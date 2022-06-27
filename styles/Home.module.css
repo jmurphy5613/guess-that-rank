@@ -14,8 +14,8 @@
 }
 
 .main-content {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   z-index: 1;
   background-color: rgba(18,19,30, 0.92);
   display: flex;
@@ -38,14 +38,21 @@
   margin-top: 2rem;
   font-weight: 400;
   font-family: 'IBM Plex Sans';
+  width: 60%;
+  text-align: center;
 }
 
-/* .text {
-  height: 30vh;
+.text {
+  /* height: 30vh;
   width: 50%;
   padding-top: 30%;
-  padding-left: 10%;
-} */
+  padding-left: 10%; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 
 .button {
   width: 14rem;

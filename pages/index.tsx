@@ -6,8 +6,8 @@ const Home: NextPage = () => {
     <div className={styles.root}>
       <div className={styles["main-content"]}>
         <div className={styles.text}>
-          <h1 className={styles.title}><span className={styles["text-gradient"]}></span>Guess the rank of other players!</h1>
-          <h3 className={styles.description}>We're putting a spin on the widely popularize guess the rank game that has been popularized on youtube</h3>
+          <h1 className={styles.title}>Guess the rank of other players!</h1>
+          <h3 className={styles.description}>We are making an open platform for guess the rank, which has been popularized on youtube. Submit your gameplay and see what rank others think you are!</h3>
           <button className={styles.button}>Open App</button>
         </div>
 
