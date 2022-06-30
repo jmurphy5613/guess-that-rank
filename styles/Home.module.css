@@ -92,17 +92,21 @@
 }
 
 .val-icon {
-  height: 40px;
-  margin: 1rem;
+  height: 60px;
+  padding: 0.5rem;
 }
 .val-icon:hover {
   cursor: pointer;
   background-color: #4d4d57;
+  border-radius: 1rem;
 }
 
 .rl-icon {
-  height: 50px;
+  height: 70px;
+  padding: 0.5rem;
 }
 .rl-icon:hover {
   cursor: pointer;
+  background-color: #4d4d57;
+  border-radius: 1rem;
 }
