@@ -79,3 +79,30 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.game-selection {
+  background-color: #2c313d;
+  margin-top: 1rem;
+  width: 300px;
+  height: 80px;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.val-icon {
+  height: 40px;
+  margin: 1rem;
+}
+.val-icon:hover {
+  cursor: pointer;
+  background-color: #4d4d57;
+}
+
+.rl-icon {
+  height: 50px;
+}
+.rl-icon:hover {
+  cursor: pointer;
+}
