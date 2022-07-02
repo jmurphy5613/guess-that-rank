@@ -1,0 +1,13 @@
+.root {
+    height: 70px;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    font-family: 'Inter';
+}

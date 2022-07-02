@@ -1,0 +1,32 @@
+.root {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: rgba(18,19,30);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video {
+}
+
+.make-guess {
+    width: 12rem;
+    height: 2.5rem;
+    position: absolute;
+    bottom: 6.5%;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.make-guess:hover {
+  background: #C25Eff;
+  cursor: pointer;
+  color: white;
+}
