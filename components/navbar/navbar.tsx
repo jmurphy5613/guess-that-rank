@@ -22,6 +22,12 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
                 }} className={styles.arrow} color="#C25Eff" />"{title}" by 
                 <span className={styles.pink}>@{username}</span>
             </h1>
+            <div className={styles["button-wrapper"]}>
+                <a href="">
+                    
+                </a>
+                <button className={styles.signin}>Sign In</button>
+            </div>
         </div>
     )
 }

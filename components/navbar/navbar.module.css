@@ -26,3 +26,29 @@
 .arrow:hover {
     cursor: pointer;
 }
+
+.signin {
+    width: 8rem;
+    height: 2.5rem;
+    bottom: 6.5%;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.signin:hover {
+  background: #C25Eff;
+  cursor: pointer;
+  color: white;
+}
+
+.button-wrapper {
+    height: 70px;
+    position: absolute;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+}
