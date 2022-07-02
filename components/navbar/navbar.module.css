@@ -4,10 +4,25 @@
     top: 0;
     width: 100vw;
     display: flex;
-    align-items: center;
 }
 
 .title {
     color: white;
     font-family: 'Inter';
+    display: flex;
+    align-items: center;
+}
+
+.pink {
+    color: #C25Eff;
+}
+.pink:hover {
+    cursor: pointer;
+}
+
+.arrow {
+    margin: 0 1rem 0 1rem;
+}
+.arrow:hover {
+    cursor: pointer;
 }
