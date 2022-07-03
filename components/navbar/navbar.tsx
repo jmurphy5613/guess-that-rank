@@ -28,6 +28,9 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
                 {user && <a href="/api/auth/logout">
                     <button className={styles.signin}>Logout</button>
                 </a>}
+                <a href="">
+                    
+                </a>
                 <button className={styles.signin}>Login</button>
             </div>
         </div>
