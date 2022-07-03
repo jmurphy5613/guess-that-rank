@@ -13,7 +13,7 @@
     height: 60vh;
     width: 20vw;
     background-color: black;
-    margin: 3rem 3rem 3rem 3rem;
+    margin: 3rem 5rem 3rem 5rem;
     border-radius: 1rem;
     transition: 0.5s;
     background-image: url(/rocketleague-banner.webp);
@@ -22,14 +22,14 @@
     background-position: center;
 }
 .rl:hover {
-    border: 1px solid #C25Eff;
+    border: 2px solid #C25Eff;
 }
 
 .val {
     height: 60vh;
     width: 20vw;
     background-color: black;
-    margin: 3rem;
+    margin: 3rem 5rem 3rem 5rem;
     border-radius: 1rem;
     transition: 0.5s;
     background-image: url(/valorant-banner.jpeg);
@@ -38,7 +38,7 @@
     background-position: center;
 }
 .val:hover {
-    border: 1px solid #C25Eff;
+    border: 2px solid #C25Eff;
 }
 
 .title {
@@ -64,7 +64,7 @@
     height: 100%;
     width: 100%;
     background-color: rgba(18,19,30, 0.92);
-    transition: 0.5s;
+    transition: 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,6 +76,9 @@
     cursor: pointer;
 }
 
-.label {
-    color: #C25Eff;
+.val-label {
+    color: #fa4454;
+}
+.rl-label {
+    color: #0c58fc;
 }

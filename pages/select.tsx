@@ -14,7 +14,7 @@ const ChooseGame = () => {
                     router.push('/rocketleague')
                 }} className={styles.rl}>
                     <div className={styles.overlay}>
-                        <h2 className={styles.label}>Rocket League</h2>
+                        <h2 className={styles["rl-label"]}>Rocket League</h2>
                     </div>
                 </div>
                 {/* <h1 className={styles.or}>OR</h1> */}
@@ -22,7 +22,7 @@ const ChooseGame = () => {
                     router.push('/valorant')
                 }} className={styles.val}>
                     <div className={styles.overlay}>
-                        <h2 className={styles.label}>Valorant</h2>
+                        <h2 className={styles["val-label"]}>Valorant</h2>
                     </div>
                 </div>
             </div>
