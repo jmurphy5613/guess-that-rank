@@ -52,3 +52,9 @@
     display: flex;
     align-items: center;
 }
+
+.identity-title {
+    color: white;
+    font-family: 'Inter';
+    padding-right: 1rem;
+}

@@ -13,9 +13,13 @@
     height: 60vh;
     width: 20vw;
     background-color: black;
-    margin: 3rem;
+    margin: 3rem 3rem 3rem 3rem;
     border-radius: 1rem;
     transition: 0.5s;
+    background-image: url(/rocketleague-banner.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .rl:hover {
     border: 1px solid #C25Eff;
@@ -28,6 +32,10 @@
     margin: 3rem;
     border-radius: 1rem;
     transition: 0.5s;
+    background-image: url(/valorant-banner.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .val:hover {
     border: 1px solid #C25Eff;
@@ -49,5 +57,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #C25Eff;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(18,19,30, 0.92);
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    opacity: 0;
+}
+.overlay:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.label {
     color: #C25Eff;
 }

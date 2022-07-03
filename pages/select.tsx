@@ -13,11 +13,17 @@ const ChooseGame = () => {
                 <div onClick={e => {
                     router.push('/rocketleague')
                 }} className={styles.rl}>
+                    <div className={styles.overlay}>
+                        <h2 className={styles.label}>Rocket League</h2>
+                    </div>
                 </div>
-                <h1 className={styles.or}>OR</h1>
+                {/* <h1 className={styles.or}>OR</h1> */}
                 <div onClick={e => {
                     router.push('/valorant')
                 }} className={styles.val}>
+                    <div className={styles.overlay}>
+                        <h2 className={styles.label}>Valorant</h2>
+                    </div>
                 </div>
             </div>
 

@@ -25,13 +25,13 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
                 <span className={styles.pink}>@{username}</span>
             </h1>
             <div className={styles["button-wrapper"]}>
+                <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
                 {user && <a href="/api/auth/logout">
                     <button className={styles.signin}>Logout</button>
                 </a>}
-                <a href="">
-                    
-                </a>
-                <button className={styles.signin}>Login</button>
+                {!user && <a href="/api/auth/login">
+                    <button className={styles.signin}>Login</button>\
+                </a>}
             </div>
         </div>
     )
