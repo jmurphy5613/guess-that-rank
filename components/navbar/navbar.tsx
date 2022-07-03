@@ -2,6 +2,7 @@ import styles from './navbar.module.css';
 import { AiOutlineLeft } from 'react-icons/ai';
 
 import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
 
 
 type NavbarProps = {
@@ -13,9 +14,10 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
 
     const router = useRouter();
 
+    const { user } = useUser();
+
     return (
         <div className={styles.root}>
-            
             <h1 className={styles.title}>
                 <AiOutlineLeft onClick={() => {
                     router.push('/');
@@ -23,10 +25,10 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
                 <span className={styles.pink}>@{username}</span>
             </h1>
             <div className={styles["button-wrapper"]}>
-                <a href="">
-                    
-                </a>
-                <button className={styles.signin}>Sign In</button>
+                {user && <a href="/api/auth/logout">
+                    <button className={styles.signin}>Logout</button>
+                </a>}
+                <button className={styles.signin}>Login</button>
             </div>
         </div>
     )

@@ -1,0 +1,53 @@
+.root {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: rgba(18,19,30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rl {
+    height: 60vh;
+    width: 20vw;
+    background-color: black;
+    margin: 3rem;
+    border-radius: 1rem;
+    transition: 0.5s;
+}
+.rl:hover {
+    border: 1px solid #C25Eff;
+}
+
+.val {
+    height: 60vh;
+    width: 20vw;
+    background-color: black;
+    margin: 3rem;
+    border-radius: 1rem;
+    transition: 0.5s;
+}
+.val:hover {
+    border: 1px solid #C25Eff;
+}
+
+.title {
+    color: white;
+    font-weight: 700;
+    font-family: 'Inter';
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+}
+
+.or {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C25Eff;
+}
