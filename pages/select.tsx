@@ -14,6 +14,7 @@ const ChooseGame = () => {
                     router.push('/rocketleague')
                 }} className={styles.rl}>
                     <div className={styles.overlay}>
+                        <img style={{ height: '90px' }} src="/rl.png" />
                         <h2 className={styles["rl-label"]}>Rocket League</h2>
                     </div>
                 </div>
@@ -22,6 +23,7 @@ const ChooseGame = () => {
                     router.push('/valorant')
                 }} className={styles.val}>
                     <div className={styles.overlay}>
+                        <img src="/val.png" style={{ height: '70px', width: '80px' }} />
                         <h2 className={styles["val-label"]}>Valorant</h2>
                     </div>
                 </div>

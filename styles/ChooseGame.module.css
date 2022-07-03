@@ -70,6 +70,7 @@
     align-items: center;
     border-radius: 1rem;
     opacity: 0;
+    flex-direction: column;
 }
 .overlay:hover {
     opacity: 1;
