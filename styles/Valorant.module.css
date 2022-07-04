@@ -1,0 +1,43 @@
+.root {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-group {
+    height: 40vh;
+    width: 20vw;
+    background-color: rgb(18, 19, 30);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.title {
+    color: white;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.option {
+    width: 12rem;
+    height: 2.5rem;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+    margin: 1rem;
+}
+.option:hover {
+    background: #C25Eff;
+    cursor: pointer;
+    color: white;
+  }
