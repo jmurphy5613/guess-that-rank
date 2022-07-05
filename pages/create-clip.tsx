@@ -50,6 +50,7 @@ const CreateClip = () => {
     const [platformSelectedOption, setPlatformSelectedOption] = useState("");
     const [rankOption, setRankOption] = useState("");
     const [videoURL, setVideoURL] = useState("");
+    const [clipTitle, setClipTitle] = useState("");
 
     const { user } = useUser();
     const router = useRouter();
@@ -78,7 +79,8 @@ const CreateClip = () => {
             videoURL: videoURL,
             user: user?.nickname,
             rank: rankOption.value,
-            game: gameSelectedOption.value
+            game: gameSelectedOption.value,
+            videoName: clipTitle
         }).then(res => console.log(res.data));
     }
 
@@ -110,6 +112,9 @@ const CreateClip = () => {
             />
             <input className={styles["url-input"]} placeholder={"Clip URL"} onChange={e => {
                 setVideoURL(e.target.value);
+            }} />
+            <input className={styles["url-input"]} placeholder={"Clip Title"} onChange={e => {
+                setClipTitle(e.target.value);
             }} />
             <button className={styles.submit} onClick={uploadClip}>Submit</button>
         </div>

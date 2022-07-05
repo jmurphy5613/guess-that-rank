@@ -48,3 +48,23 @@
 .create-clip:hover {
     cursor: pointer;
 }
+
+.play {
+    width: 12rem;
+    height: 2.5rem;
+    position: absolute;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.play:hover {
+  background: #C25Eff;
+  cursor: pointer;
+  color: white;
+}
