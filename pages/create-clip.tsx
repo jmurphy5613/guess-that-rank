@@ -2,9 +2,9 @@ import styles from '../styles/CreateClip.module.css';
 import Select from 'react-select';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { useRouter } from 'next/router';
-
-
 import { useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
+import axios from 'axios';
 
 
 const gameOptions = [
@@ -49,8 +49,38 @@ const CreateClip = () => {
     const [gameSelectedOption, setGameSelctionOption] = useState("");
     const [platformSelectedOption, setPlatformSelectedOption] = useState("");
     const [rankOption, setRankOption] = useState("");
+    const [videoURL, setVideoURL] = useState("");
 
+    const { user } = useUser();
     const router = useRouter();
+
+    // videoSource: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
+    // videoURL: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
+    // user: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
+    // rank: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // }
+
+
+    const uploadClip = () => {
+        axios.post('http://localhost:3002/clips/add-clip', {
+            videoSource: platformSelectedOption.value,
+            videoURL: videoURL,
+            user: user?.nickname,
+            rank: rankOption.value,
+            game: gameSelectedOption.value
+        }).then(res => console.log(res.data));
+    }
 
     return (
         <div className={styles.root}>
@@ -78,9 +108,10 @@ const CreateClip = () => {
                 options={rankOptions}
                 onChange={setRankOption}
             />
-            <input className={styles["url-input"]} placeholder={"Clip URL"} />
-            <button className={styles.submit}>Submit</button>
-        
+            <input className={styles["url-input"]} placeholder={"Clip URL"} onChange={e => {
+                setVideoURL(e.target.value);
+            }} />
+            <button className={styles.submit} onClick={uploadClip}>Submit</button>
         </div>
     )
 }

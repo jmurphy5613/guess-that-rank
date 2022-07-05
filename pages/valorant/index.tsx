@@ -29,7 +29,7 @@ const ValorantHome = () => {
     return (
         <div className={styles.root}>
             <ValorantNavbar />
-            <div className={styles["tabs"]}>
+            {/* <div className={styles["tabs"]}>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("completed")
@@ -54,7 +54,8 @@ const ValorantHome = () => {
                     pauseOnHover
                     theme={'dark'}
                 />
-            </div>
+            </div> */}
+            <button className={styles.play}>Play</button>
             <button className={styles["create-clip"]} onClick={() => {
                 if(user) {
                     router.push('/create-clip')
