@@ -12,3 +12,68 @@
     color: white;
     font-family: "Inter";
 }
+
+.submit {
+    width: 12rem;
+    height: 2.5rem;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.submit:hover {
+    background: #C25Eff;
+    cursor: pointer;
+    color: white;
+}
+
+.select {
+    width: 20%;
+    margin: 1rem;
+}
+
+.url-input {
+
+}
+
+.go-back {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+}
+.go-back:hover {
+    cursor: pointer;
+}
+
+.back-text {
+    color: white;
+    font-family: "Inter";
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+.url-input {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background-color: #292a34;
+    font-family: 'Inter';
+    color: white;
+    padding-left: 1rem;
+    border: none;
+    margin: 1rem;
+    font-weight: 700;
+}
+.url-input:focus {
+    outline: none;
+}
+.url-input::-webkit-input-placeholder {
+    color: white;
+    font-family: 'Inter';
+    font-weight: 700;
+}
