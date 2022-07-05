@@ -21,8 +21,9 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
             <h1 className={styles.title}>
                 <AiOutlineLeft onClick={() => {
                     router.push('/');
-                }} className={styles.arrow} color="#C25Eff" />"{title}" by 
-                <span className={styles.pink}>@{username}</span>
+                }} className={styles.arrow} color="#C25Eff" />
+                "{title}" by&nbsp;
+                <span className={styles.pink}>{`@${username}`}</span>
             </h1>
             <div className={styles["button-wrapper"]}>
                 <h2 className={styles["identity-title"]}>{user?.nickname}</h2>

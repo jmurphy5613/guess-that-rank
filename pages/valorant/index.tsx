@@ -55,7 +55,9 @@ const ValorantHome = () => {
                     theme={'dark'}
                 />
             </div> */}
-            <button className={styles.play}>Play</button>
+            <button className={styles.play} onClick={() => {
+                router.push('/valorant/1');
+            }}>Play</button>
             <button className={styles["create-clip"]} onClick={() => {
                 if(user) {
                     router.push('/create-clip')
