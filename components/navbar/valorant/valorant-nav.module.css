@@ -1,11 +1,14 @@
 .root {
     position: absolute;
     height: 70px;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
 }
 
 .logo {
-    height: 50px;
+    height: 70px;
+    margin-top: 1rem;
 }

@@ -2,4 +2,49 @@
     height: 100vh;
     width: 100vw;
     background-color: rgb(18, 19, 30);
+    display: flex;
+    justify-content: center;
+}
+
+.tabs {
+    margin-top: calc(70px + 2rem);
+    display: flex;
+}
+
+.tab {
+    color: white;
+    margin: 2rem 2rem 1rem 2rem;
+    width: 12rem;
+    text-align: center;
+}
+.tab:hover {
+    cursor: pointer;
+}
+
+.tab-indicator {
+    width: 12rem;
+    height: 2px;
+    background-color: #C25Eff;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-clip {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.3rem;
+    bottom: 1rem;
+    right: 1rem;
+    border: none;
+    background-color: #2c313d;
+    color: grey;
+    border-radius: 5px;
+}
+.create-clip:hover {
+    cursor: pointer;
 }
