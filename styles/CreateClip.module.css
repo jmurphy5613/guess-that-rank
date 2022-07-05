@@ -23,6 +23,7 @@
     font-weight: 700;
     border-radius: 10px;
     transition: 0.5s;
+    margin: 1rem;
 }
 .submit:hover {
     background: #C25Eff;
@@ -58,7 +59,7 @@
 }
 
 .url-input {
-    width: 8rem;
+    width: 20%;
     height: 3rem;
     border-radius: 1rem;
     background-color: #292a34;
@@ -73,7 +74,7 @@
     outline: none;
 }
 .url-input::-webkit-input-placeholder {
-    color: white;
+    color: rgb(143, 142, 142);
     font-family: 'Inter';
     font-weight: 700;
 }
