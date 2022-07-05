@@ -57,7 +57,7 @@ const ValorantHome = () => {
             </div>
             <button className={styles["create-clip"]} onClick={() => {
                 if(user) {
-                    router.push('/')
+                    router.push('/create-clip')
                 } else {
                     noAccountNotify();
                 }

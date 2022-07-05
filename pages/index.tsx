@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 const Home: NextPage = () => {
 
   const router = useRouter();
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <div className={styles.root}>
