@@ -1,5 +1,5 @@
 import styles from './PostGuessPopup.module.css';
-
+import { useRouter } from 'next/router';
 interface PostGuessPopupProps {
     correct: boolean,
     rankGuessed: string,
@@ -8,6 +8,9 @@ interface PostGuessPopupProps {
 }
 
 const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, correctRank, clipId }) => {
+
+    const router = useRouter();
+
     return (
         <div className={styles.root}>
             <div className={styles.popup}>
@@ -21,7 +24,7 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     <h1 style={{ color: '#ffffff' }}>Correct!</h1>
                 }
                 <button className={styles["go-next"]} onClick={e => {
-
+                    router.push(`/valorant/${clipId+1}`)
                 }}>Go Next</button>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import Select from 'react-select';
 import PostGuessPopup from '../../components/post-guess-popup/PostGuessPopup';
+import { medalConvert } from '../../utils/formatting';
 
 
 
@@ -62,6 +63,9 @@ const ClipPage = () => {
     }, [router.isReady]);
 
 
+    console.log(medalConvert('https://medal.tv/games/valorant/clips/py3JYxhFSz3gR/qleViV7Zqm8f?invite=cr-MSxCdUssNzA1NTY5NTcs'));
+
+
     const handleGuess = () => {
         axios.post(`http://localhost:3002/guess/add`, {
             clipId: parseInt(gameId),
@@ -70,7 +74,7 @@ const ClipPage = () => {
         }).then(e => {
             console.log(e.data);
             setCorrectRank(e.data.correctRank);
-            if(e.data.response == 'correct') setCorrect(true);
+            if(e.data.response == correct) setCorrect(true);
         });
         setGuessed(true);
     }
