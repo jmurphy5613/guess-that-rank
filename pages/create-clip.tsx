@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
+import { medalConvert } from '../utils/formatting';
 
 
 const gameOptions = [
@@ -52,15 +53,26 @@ const CreateClip = () => {
     const [videoURL, setVideoURL] = useState("");
     const [clipTitle, setClipTitle] = useState("");
 
+    const [submitted, setSubmitted] = useState(false);
+
     const { user } = useUser();
     const router = useRouter();
+
+
+    const getUsername = () => {
+        if(user) {
+            return user.nickname;
+        } else {
+            return 'Guest'
+        }
+    }
 
 
     const uploadClip = () => {
         axios.post('http://localhost:3002/clips/add-clip', {
             videoSource: platformSelectedOption.value,
-            videoURL: videoURL,
-            user: user?.nickname,
+            videoURL: `https://medal.tv/games/valorant/clip${medalConvert(videoURL)}`,
+            user: getUsername(),
             rank: rankOption.value,
             game: gameSelectedOption.value,
             videoName: clipTitle

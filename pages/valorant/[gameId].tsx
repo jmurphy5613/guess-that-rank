@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import Select from 'react-select';
 import PostGuessPopup from '../../components/post-guess-popup/PostGuessPopup';
-import { medalConvert } from '../../utils/formatting';
-
 
 
 const rankOptions = [
@@ -51,6 +49,8 @@ const ClipPage = () => {
     const [correct, setCorrect] = useState(false);
     const [correctRank, setCorrectRank] = useState("");
 
+    const [dataFetched, setDataFetched] = useState(false)
+
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
@@ -58,13 +58,10 @@ const ClipPage = () => {
         const { gameId } = router.query;
         axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
-        })
+        });
+        setDataFetched(true);
 
     }, [router.isReady]);
-
-
-    console.log(medalConvert('https://medal.tv/games/valorant/clips/py3JYxhFSz3gR/qleViV7Zqm8f?invite=cr-MSxCdUssNzA1NTY5NTcs'));
-
 
     const handleGuess = () => {
         axios.post(`http://localhost:3002/guess/add`, {
@@ -79,6 +76,8 @@ const ClipPage = () => {
         setGuessed(true);
     }
 
+    if(!dataFetched) return <div></div>
+
     return (
         <div className={styles.root}>
             <Navbar username={currentClip.user} title={currentClip.videoName} />
@@ -90,7 +89,7 @@ const ClipPage = () => {
                 />
                 <button className={styles["make-guess"]} onClick={handleGuess}>Lock In</button>
             </div>
-            <iframe className={styles.video} width="65%" height="70%" src="https://medal.tv/clip/py3JYxhFSz3gR/vpW9j0a5T" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameborder="0" allow="autoplay" allowfullscreen></iframe>
 
             {guessed && <PostGuessPopup correct={correct} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
 
