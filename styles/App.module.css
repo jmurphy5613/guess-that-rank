@@ -10,13 +10,13 @@
 }
 
 .video {
+  position: relative;
+  top: 2rem;
 }
 
 .make-guess {
     width: 12rem;
     height: 2.5rem;
-    position: absolute;
-    bottom: 6.5%;
     border: none;
     background-color: white;
     color: black;
@@ -24,9 +24,15 @@
     font-weight: 700;
     border-radius: 10px;
     transition: 0.5s;
+    margin-left: 1rem;
 }
 .make-guess:hover {
   background: #C25Eff;
   cursor: pointer;
   color: white;
+}
+
+.rank-select {
+  width: 12rem;
+  margin-right: 1rem;
 }

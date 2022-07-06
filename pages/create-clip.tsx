@@ -55,23 +55,6 @@ const CreateClip = () => {
     const { user } = useUser();
     const router = useRouter();
 
-    // videoSource: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
-    // videoURL: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
-    // user: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
-    // rank: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // }
-
 
     const uploadClip = () => {
         axios.post('http://localhost:3002/clips/add-clip', {
