@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar/navbar';
 import axios from 'axios';
 import { Router, useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
 import Select from 'react-select';
 
 
@@ -37,17 +38,18 @@ const rankOptions = [
 
 const ClipPage = () => {
 
+    const {user} = useUser();
     const router = useRouter();
+    const { gameId } = router.query;
 
     const [currentClip, setCurrentClip] = useState({});
-    const [selectedRank, setSelectedRank] = useState("");
+    const [selectedRank, setSelectedRank] = useState({});
 
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
 
         const { gameId } = router.query;
-        console.log(gameId);
         axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
         })
@@ -70,7 +72,11 @@ const ClipPage = () => {
 
     const handleGuess = () => {
         axios.post(`http://localhost:3002/guess/add`, {
-
+            clipId: parseInt(gameId),
+            rank: selectedRank.value,
+            user: user?.nickname
+        }).then(e => {
+            console.log(e.data);
         })
     }
 
@@ -83,7 +89,7 @@ const ClipPage = () => {
                     onChange={setSelectedRank}
                     className={styles["rank-select"]}
                 />
-                <button className={styles["make-guess"]}>Lock In</button>
+                <button className={styles["make-guess"]} onClick={handleGuess}>Lock In</button>
             </div>
             <iframe className={styles.video} width="65%" height="70%" src="https://medal.tv/clip/py3JYxhFSz3gR/vpW9j0a5T" frameborder="0" allow="autoplay" allowfullscreen></iframe>
 
