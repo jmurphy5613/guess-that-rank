@@ -34,3 +34,22 @@
 .rank {
     height: 125px;
 }
+
+.go-next {
+    width: 12rem;
+    height: 2.5rem;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+    position: absolute;
+    bottom: calc(25vh + 2rem);
+}
+.go-next:hover {
+  background: #C25Eff;
+  cursor: pointer;
+  color: white;
+}

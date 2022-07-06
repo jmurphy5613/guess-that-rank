@@ -46,7 +46,7 @@ const ClipPage = () => {
     const [currentClip, setCurrentClip] = useState({});
     const [selectedRank, setSelectedRank] = useState({});
 
-    const [guessed, setGuessed] = useState(true);
+    const [guessed, setGuessed] = useState(false);
     const [correct, setCorrect] = useState(false);
     const [correctRank, setCorrectRank] = useState("");
 
@@ -68,8 +68,9 @@ const ClipPage = () => {
             rank: selectedRank.value,
             user: user?.nickname
         }).then(e => {
+            console.log(e.data);
             setCorrectRank(e.data.correctRank);
-            if(e.data.response == correct) setCorrect(true);
+            if(e.data.response == 'correct') setCorrect(true);
         });
         setGuessed(true);
     }

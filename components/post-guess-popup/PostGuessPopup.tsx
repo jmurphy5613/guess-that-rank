@@ -17,7 +17,12 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     <h2 className={styles["actual-rank"]}>Actual Rank: Platinum 3</h2>
                 </>
                 }
+                {correct &&
+                    <h1 style={{ color: '#ffffff' }}>Correct!</h1>
+                }
+                <button className={styles["go-next"]} onClick={e => {
 
+                }}>Go Next</button>
             </div>
         </div>
     )
