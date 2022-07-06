@@ -5,6 +5,7 @@ import { Router, useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import Select from 'react-select';
+import PostGuessPopup from '../../components/post-guess-popup/PostGuessPopup';
 
 
 
@@ -45,6 +46,10 @@ const ClipPage = () => {
     const [currentClip, setCurrentClip] = useState({});
     const [selectedRank, setSelectedRank] = useState({});
 
+    const [guessed, setGuessed] = useState(true);
+    const [correct, setCorrect] = useState(false);
+    const [correctRank, setCorrectRank] = useState("");
+
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
@@ -56,19 +61,6 @@ const ClipPage = () => {
 
     }, [router.isReady]);
 
-    // clipId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
-    // rank: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
-    // user: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // }
-
 
     const handleGuess = () => {
         axios.post(`http://localhost:3002/guess/add`, {
@@ -76,8 +68,10 @@ const ClipPage = () => {
             rank: selectedRank.value,
             user: user?.nickname
         }).then(e => {
-            console.log(e.data);
-        })
+            setCorrectRank(e.data.correctRank);
+            if(e.data.response == correct) setCorrect(true);
+        });
+        setGuessed(true);
     }
 
     return (
@@ -93,6 +87,7 @@ const ClipPage = () => {
             </div>
             <iframe className={styles.video} width="65%" height="70%" src="https://medal.tv/clip/py3JYxhFSz3gR/vpW9j0a5T" frameborder="0" allow="autoplay" allowfullscreen></iframe>
 
+            {guessed && <PostGuessPopup correct={correct} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
 
         </div>
     )
