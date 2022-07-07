@@ -15,6 +15,9 @@ const ValorantHome = () => {
 
     const [tabSelected, setTabSelected] = useState("completed");
 
+    const [guessedClips, setGuessedClips] = useState([]);
+    const [notGuessClips, setNonGuessedClips] = useState([]);
+
 
     useEffect(() => {
         if(!user) return;
@@ -27,7 +30,7 @@ const ValorantHome = () => {
                 guessed.push(res[i].clipId);
             }
         })
-        console.log(guessed);
+        setGuessedClips(guessed);
 
         //get the ids of all clips that have not been guessed
         let notGuessed = [];
@@ -35,17 +38,31 @@ const ValorantHome = () => {
             for(let i = 0; i < e.data.length; i++) {
                 let isInGuessed = false;
                 for(let j = 0; j < guessed.length; j++) {
-                    if(guessed[j] === e.data[i]) isInGuessed = true;
+                    if(guessed[j] == e.data[i].id) {
+                        isInGuessed = true;
+                    }
                 }
-                if(isInGuessed) notGuessed.push(e.data[i].id);
+                if(!isInGuessed) notGuessed.push(e.data[i].id);
             }
         });
-        console.log(notGuessed);
+        setNonGuessedClips(notGuessed);
     }, [user])
 
 
     const noAccountNotify = () => {
         toast.error('You need to login to do that!', {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
+    const playedAllCips = () => {
+        toast.error('You have seen every clip!', {
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -86,7 +103,10 @@ const ValorantHome = () => {
                 />
             </div>
             <button className={styles.play} onClick={() => {
-                router.push('/valorant/1');
+                if(notGuessClips.length === 0) playedAllCips();
+                else {
+                    router.push(`/valorant/${notGuessClips[0]}`);
+                }
             }}>Play</button>
             <button className={styles["create-clip"]} onClick={() => {
                 if(user) {
