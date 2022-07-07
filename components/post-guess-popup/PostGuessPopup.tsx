@@ -16,8 +16,7 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
             <div className={styles.popup}>
                 {!correct &&
                 <>
-                    <img className={styles.rank} src="/plat3.png" />
-                    <h2 className={styles["actual-rank"]}>Actual Rank: Platinum 3</h2>
+                    <h2 className={styles["actual-rank"]}>Actual Rank: {correctRank}</h2>
                 </>
                 }
                 {correct &&
