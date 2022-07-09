@@ -3,7 +3,8 @@
     width: 100vw;
     background-color: rgb(18, 19, 30);
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .tabs {

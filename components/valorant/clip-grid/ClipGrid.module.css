@@ -1,0 +1,25 @@
+.grid {
+    width: 60vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+    margin-top: 3rem;
+}
+
+.grid-item {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(66,197,242);
+
+    border-radius: 1rem;
+    border: double 1px transparent;
+    background-image: linear-gradient(rgb(18, 19, 30), rgb(18, 19, 30)), linear-gradient(to right, #42c5f2 0%, #823f98 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.title {
+    color: white;
+}

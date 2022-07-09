@@ -16,54 +16,17 @@ const ValorantHome = () => {
 
     const [tabSelected, setTabSelected] = useState("completed");
 
-    const [guessedClipsIds, setGuessedClipsIds] = useState([]);
-    const [notGuessClipsIds, setNonGuessedClipsIds] = useState([]);
-    const [completeClipObjects, setCompleteClipObjects] = useState([]);
-    const [incompleteClipObjects, setIncompleteClipObjects] = useState([]);
+    const [incompleteClips, setIncompleteClips] = useState([]);
 
     const [dataFetched, setDataFetched] = useState(false);
 
 
     useEffect(() => {
         if(!user) return;
-
-        //get the ids of all the guessed clips
-        let guessed:number[] = [];
-        axios.get(`http://localhost:3002/guess/guessed/${user.nickname}`).then(e => {
-            const res = e.data;
-            for(let i = 0; i < res.length; i++) {
-                guessed.push(res[i].clipId);
-            }
-            setGuessedClipsIds(guessed);
-            for(let i = 0; i < guessedClipsIds.length; i++) {
-                axios.get(`http://localhost:3002/clips/by-id/${guessedClipsIds[i]}`).then(e => {
-                    completeClipObjects.push(e.data);
-                })
-            }
+        axios.get(`http://localhost:3002/guess/not-guessed/${user.nickname}`).then(e => {
+            setIncompleteClips(e.data);
+            setDataFetched(true);
         })
-
-        //get the ids of all clips that have not been guessed
-        let notGuessed:number[] = [];
-        axios.get('http://localhost:3002/clips/get-all').then(e => {
-            for(let i = 0; i < e.data.length; i++) {
-                let isInGuessed = false;
-                for(let j = 0; j < guessed.length; j++) {
-                    if(guessed[j] == e.data[i].id) {
-                        isInGuessed = true;
-                    }
-                }
-                if(!isInGuessed) notGuessed.push(e.data[i].id);
-            }
-            setNonGuessedClipsIds(notGuessed);
-            for(let i = 0; i < notGuessClipsIds.length; i++) {
-                axios.get(`http://localhost:3002/clips/by-id/${notGuessClipsIds[i]}`).then(e => {
-                    incompleteClipObjects.push(e.data);
-                });
-            }
-    
-        });
-
-        setDataFetched(true);
     }, [user])
 
 
@@ -113,13 +76,13 @@ const ValorantHome = () => {
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("completed")
-                    }}>Completed ({guessedClipsIds.length})</h2>
+                    }}>Completed ({incompleteClips.length})</h2>
                     {tabSelected === "completed" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("incomplete")
-                    }}>Incomplete ({notGuessClipsIds.length})</h2>
+                    }}>Incomplete ({incompleteClips.length})</h2>
                     {tabSelected === "incomplete" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <ToastContainer
@@ -137,8 +100,8 @@ const ValorantHome = () => {
             </div>
 
             {/*This is where the clip grid will be*/}
-            {tabSelected == 'completed' && <ClipGrid />}
-            {tabSelected == 'incomplete' && <ClipGrid />}
+            {tabSelected == 'completed' && <ClipGrid clips={incompleteClips} />}
+            {tabSelected == 'incomplete' && <ClipGrid clips={incompleteClips} />}
 
         </div>
     )
