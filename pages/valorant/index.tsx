@@ -6,6 +6,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import ClipGrid from '../../components/valorant/clip-grid/ClipGrid';
 
 
 const ValorantHome = () => {
@@ -15,8 +16,10 @@ const ValorantHome = () => {
 
     const [tabSelected, setTabSelected] = useState("completed");
 
-    const [guessedClips, setGuessedClips] = useState([]);
-    const [notGuessClips, setNonGuessedClips] = useState([]);
+    const [guessedClipsIds, setGuessedClipsIds] = useState([]);
+    const [notGuessClipsIds, setNonGuessedClipsIds] = useState([]);
+    const [completeClipObjects, setCompleteClipObjects] = useState([]);
+    const [incompleteClipObjects, setIncompleteClipObjects] = useState([]);
 
     const [dataFetched, setDataFetched] = useState(false);
 
@@ -25,17 +28,22 @@ const ValorantHome = () => {
         if(!user) return;
 
         //get the ids of all the guessed clips
-        let guessed= [];
+        let guessed:number[] = [];
         axios.get(`http://localhost:3002/guess/guessed/${user.nickname}`).then(e => {
             const res = e.data;
             for(let i = 0; i < res.length; i++) {
                 guessed.push(res[i].clipId);
             }
-            setGuessedClips(guessed);
+            setGuessedClipsIds(guessed);
+            for(let i = 0; i < guessedClipsIds.length; i++) {
+                axios.get(`http://localhost:3002/clips/by-id/${guessedClipsIds[i]}`).then(e => {
+                    completeClipObjects.push(e.data);
+                })
+            }
         })
 
         //get the ids of all clips that have not been guessed
-        let notGuessed = [];
+        let notGuessed:number[] = [];
         axios.get('http://localhost:3002/clips/get-all').then(e => {
             for(let i = 0; i < e.data.length; i++) {
                 let isInGuessed = false;
@@ -46,11 +54,14 @@ const ValorantHome = () => {
                 }
                 if(!isInGuessed) notGuessed.push(e.data[i].id);
             }
-            setNonGuessedClips(notGuessed);
+            setNonGuessedClipsIds(notGuessed);
+            for(let i = 0; i < notGuessClipsIds.length; i++) {
+                axios.get(`http://localhost:3002/clips/by-id/${notGuessClipsIds[i]}`).then(e => {
+                    incompleteClipObjects.push(e.data);
+                });
+            }
+    
         });
-
-        console.log(notGuessClips);
-        console.log(guessedClips);
 
         setDataFetched(true);
     }, [user])
@@ -85,9 +96,9 @@ const ValorantHome = () => {
     return (
         <div className={styles.root}>
             <button className={styles.play} onClick={() => {
-                if(notGuessClips.length === 0) playedAllCips();
+                if(notGuessClipsIds.length === 0) playedAllCips();
                 else {
-                    router.push(`/valorant/${notGuessClips[0]}`);
+                    router.push(`/valorant/${notGuessClipsIds[0]}`);
                 }
             }}>Play</button>
             <button className={styles["create-clip"]} onClick={() => {
@@ -100,15 +111,15 @@ const ValorantHome = () => {
             <ValorantNavbar />
             <div className={styles["tabs"]}>
                 <div className={styles["tab-container"]}>
-                    <h2 className={styles.tab} onClicks={() => {
+                    <h2 className={styles.tab} onClick={() => {
                         setTabSelected("completed")
-                    }}>Completed ({guessedClips.length})</h2>
+                    }}>Completed ({guessedClipsIds.length})</h2>
                     {tabSelected === "completed" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("incomplete")
-                    }}>Incomplete ({notGuessClips.length})</h2>
+                    }}>Incomplete ({notGuessClipsIds.length})</h2>
                     {tabSelected === "incomplete" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <ToastContainer
@@ -126,7 +137,8 @@ const ValorantHome = () => {
             </div>
 
             {/*This is where the clip grid will be*/}
-
+            {tabSelected == 'completed' && <ClipGrid />}
+            {tabSelected == 'incomplete' && <ClipGrid />}
 
         </div>
     )
