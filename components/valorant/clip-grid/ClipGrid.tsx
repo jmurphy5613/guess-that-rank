@@ -12,7 +12,9 @@ const ClipGrid:React.FC<ClipGridProps> = ({ clips }) => {
             {clips.map(item => {
                 return (
                     <div className={styles["grid-item"]}>
-                        <h2 className={styles.title}>{item.user}</h2>
+                        <img className={styles.video} src={`//image.thum.io/get/${item.videoURL}`} />
+
+
                     </div>
                 )
             })}
