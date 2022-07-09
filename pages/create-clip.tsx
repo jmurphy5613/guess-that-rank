@@ -76,7 +76,10 @@ const CreateClip = () => {
             rank: rankOption.value,
             game: gameSelectedOption.value,
             videoName: clipTitle
-        }).then(res => console.log(res.data));
+        }).then(res => {
+            console.log(res.data);
+            router.push(`/valorant/${res.data.id}`)
+        });
     }
 
     return (
@@ -111,7 +114,9 @@ const CreateClip = () => {
             <input className={styles["url-input"]} placeholder={"Clip Title"} onChange={e => {
                 setClipTitle(e.target.value);
             }} />
-            <button className={styles.submit} onClick={uploadClip}>Submit</button>
+            <button className={styles.submit} onClick={e => {
+                uploadClip
+            }}>Submit</button>
         </div>
     )
 }
