@@ -60,8 +60,7 @@
     font-weight: 700;
     border-radius: 10px;
     transition: 0.5s;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 2rem;
 }
 .play:hover {
   background: #C25Eff;

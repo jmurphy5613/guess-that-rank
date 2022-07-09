@@ -1,5 +1,6 @@
 import styles from '../styles/ChooseGame.module.css';
 import { useRouter } from 'next/router';
+import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
 
 
 const ChooseGame = () => {
@@ -8,16 +9,17 @@ const ChooseGame = () => {
 
     return (
         <div className={styles.root}>
+            <ValorantNavbar />
             <h1 className={styles.title}>Choose your game</h1>
             <div className={styles.games}>
-                <div onClick={e => {
+                {/* <div onClick={e => {
                     router.push('/rocketleague')
                 }} className={styles.rl}>
                     <div className={styles.overlay}>
                         <img style={{ height: '90px' }} src="/rl.png" />
                         <h2 className={styles["rl-label"]}>Rocket League</h2>
                     </div>
-                </div>
+                </div> */}
                 {/* <h1 className={styles.or}>OR</h1> */}
                 <div onClick={e => {
                     router.push('/valorant')

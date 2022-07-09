@@ -42,8 +42,15 @@ const ClipPage = () => {
     const router = useRouter();
     const { gameId } = router.query;
 
-    const [currentClip, setCurrentClip] = useState({});
-    const [selectedRank, setSelectedRank] = useState({});
+    const [currentClip, setCurrentClip] = useState({
+        user: '',
+        videoName: '',
+        videoURL: ''
+
+    });
+    const [selectedRank, setSelectedRank] = useState({
+        value: ''
+    });
 
     const [guessed, setGuessed] = useState(false);
     const [correct, setCorrect] = useState(false);
@@ -82,12 +89,18 @@ const ClipPage = () => {
         <div className={styles.root}>
             <Navbar username={currentClip.user} title={currentClip.videoName} />
             <div style={{ display: 'flex' }}>
-                <Select 
-                    options={rankOptions}
-                    onChange={setSelectedRank}
-                    className={styles["rank-select"]}
-                />
-                <button className={styles["make-guess"]} onClick={handleGuess}>Lock In</button>
+                {user?.nickname == currentClip.user ?                 
+                <>
+                    <Select 
+                        options={rankOptions}
+                        onChange={setSelectedRank}
+                        className={styles["rank-select"]}
+                    />
+                    <button className={styles["make-guess"]} onClick={handleGuess}>Lock In</button> 
+                </>
+                :
+                <h2 className={styles.thankyou}>Thanks for sumbitting this clip!</h2>
+                }
             </div>
             <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameborder="0" allow="autoplay" allowfullscreen></iframe>
 

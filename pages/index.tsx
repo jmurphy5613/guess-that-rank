@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
 
 
-import Popup from 'reactjs-popup';
-
 const Home: NextPage = () => {
 
   const router = useRouter();

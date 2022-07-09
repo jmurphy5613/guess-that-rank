@@ -18,6 +18,8 @@ const ValorantHome = () => {
     const [guessedClips, setGuessedClips] = useState([]);
     const [notGuessClips, setNonGuessedClips] = useState([]);
 
+    const [dataFetched, setDataFetched] = useState(false);
+
 
     useEffect(() => {
         if(!user) return;
@@ -29,8 +31,8 @@ const ValorantHome = () => {
             for(let i = 0; i < res.length; i++) {
                 guessed.push(res[i].clipId);
             }
+            setGuessedClips(guessed);
         })
-        setGuessedClips(guessed);
 
         //get the ids of all clips that have not been guessed
         let notGuessed = [];
@@ -44,8 +46,13 @@ const ValorantHome = () => {
                 }
                 if(!isInGuessed) notGuessed.push(e.data[i].id);
             }
+            setNonGuessedClips(notGuessed);
         });
-        setNonGuessedClips(notGuessed);
+
+        console.log(notGuessClips);
+        console.log(guessedClips);
+
+        setDataFetched(true);
     }, [user])
 
 
@@ -73,20 +80,35 @@ const ValorantHome = () => {
         });
     }
 
+    if(!dataFetched) return <div></div>
+
     return (
         <div className={styles.root}>
+            <button className={styles.play} onClick={() => {
+                if(notGuessClips.length === 0) playedAllCips();
+                else {
+                    router.push(`/valorant/${notGuessClips[0]}`);
+                }
+            }}>Play</button>
+            <button className={styles["create-clip"]} onClick={() => {
+                if(user) {
+                    router.push('/create-clip')
+                } else {
+                    noAccountNotify();
+                }
+            }}>+</button>
             <ValorantNavbar />
             <div className={styles["tabs"]}>
                 <div className={styles["tab-container"]}>
-                    <h2 className={styles.tab} onClick={() => {
+                    <h2 className={styles.tab} onClicks={() => {
                         setTabSelected("completed")
-                    }}>Completed</h2>
+                    }}>Completed ({guessedClips.length})</h2>
                     {tabSelected === "completed" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("incomplete")
-                    }}>Incomplete</h2>
+                    }}>Incomplete ({notGuessClips.length})</h2>
                     {tabSelected === "incomplete" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <ToastContainer
@@ -102,19 +124,10 @@ const ValorantHome = () => {
                     theme={'dark'}
                 />
             </div>
-            <button className={styles.play} onClick={() => {
-                if(notGuessClips.length === 0) playedAllCips();
-                else {
-                    router.push(`/valorant/${notGuessClips[0]}`);
-                }
-            }}>Play</button>
-            <button className={styles["create-clip"]} onClick={() => {
-                if(user) {
-                    router.push('/create-clip')
-                } else {
-                    noAccountNotify();
-                }
-            }}>+</button>
+
+            {/*This is where the clip grid will be*/}
+
+
         </div>
     )
 }

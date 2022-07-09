@@ -115,7 +115,7 @@ const CreateClip = () => {
                 setClipTitle(e.target.value);
             }} />
             <button className={styles.submit} onClick={e => {
-                uploadClip
+                uploadClip();
             }}>Submit</button>
         </div>
     )
