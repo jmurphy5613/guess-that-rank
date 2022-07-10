@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 import { medalConvert } from '../utils/formatting';
+import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
 
 
 const gameOptions = [
@@ -84,7 +85,7 @@ const CreateClip = () => {
 
     return (
         <div className={styles.root}>
-
+            <ValorantNavbar />
             <div className={styles["go-back"]} onClick={() => {
                 router.push('/valorant')
             }}>

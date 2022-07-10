@@ -20,7 +20,7 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
         <div className={styles.root}>
             <h1 className={styles.title}>
                 <AiOutlineLeft onClick={() => {
-                    router.push('/');
+                    router.push('/valorant');
                 }} className={styles.arrow} color="#C25Eff" />
                 "{title}" by&nbsp;
                 <span className={styles.pink}>{`@${username}`}</span>
