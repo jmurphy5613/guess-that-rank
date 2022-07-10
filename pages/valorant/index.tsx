@@ -17,16 +17,21 @@ const ValorantHome = () => {
     const [tabSelected, setTabSelected] = useState("completed");
 
     const [incompleteClips, setIncompleteClips] = useState([]);
+    const [completedClips, setCompletedClips] = useState([]);
 
     const [dataFetched, setDataFetched] = useState(false);
 
 
     useEffect(() => {
         if(!user) return;
-        axios.get(`http://localhost:3002/guess/not-guessed/${user.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user.nickname}`).then(e => {
             setIncompleteClips(e.data);
-            setDataFetched(true);
+        });
+        axios.get(`http://localhost:3002/guess/guessed-clips/${user.nickname}`).then(e => {
+            setCompletedClips(e.data);
         })
+        setDataFetched(true);
+
     }, [user])
 
 
@@ -59,9 +64,9 @@ const ValorantHome = () => {
     return (
         <div className={styles.root}>
             <button className={styles.play} onClick={() => {
-                if(notGuessClipsIds.length === 0) playedAllCips();
+                if(incompleteClips.length === 0) playedAllCips();
                 else {
-                    router.push(`/valorant/${notGuessClipsIds[0]}`);
+                    router.push(`/valorant/${incompleteClips[0].id}`);
                 }
             }}>Play</button>
             <button className={styles["create-clip"]} onClick={() => {
@@ -76,7 +81,7 @@ const ValorantHome = () => {
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("completed")
-                    }}>Completed ({incompleteClips.length})</h2>
+                    }}>Completed ({completedClips.length})</h2>
                     {tabSelected === "completed" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <div className={styles["tab-container"]}>
@@ -100,7 +105,7 @@ const ValorantHome = () => {
             </div>
 
             {/*This is where the clip grid will be*/}
-            {tabSelected == 'completed' && <ClipGrid clips={incompleteClips} />}
+            {tabSelected == 'completed' && <ClipGrid clips={completedClips} />}
             {tabSelected == 'incomplete' && <ClipGrid clips={incompleteClips} />}
 
         </div>

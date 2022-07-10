@@ -89,7 +89,7 @@ const ClipPage = () => {
         <div className={styles.root}>
             <Navbar username={currentClip.user} title={currentClip.videoName} />
             <div style={{ display: 'flex' }}>
-                {user?.nickname == currentClip.user ?                 
+                {user?.nickname !== currentClip.user ?                 
                 <>
                     <Select 
                         options={rankOptions}
