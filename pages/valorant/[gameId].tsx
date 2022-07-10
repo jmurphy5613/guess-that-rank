@@ -78,7 +78,6 @@ const ClipPage = () => {
             rank: selectedRank.value,
             user: user?.nickname
         }).then(e => {
-            console.log(e.data);
             setCorrectRank(e.data.correctRank);
             if(e.data.response == correct) setCorrect(true);
         });

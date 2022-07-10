@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 
 import styles from '../styles/CreateClip.module.css';
 import Select from 'react-select';
@@ -13,7 +13,6 @@ import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
 
 const gameOptions = [
     {value: 'val', label: 'Valorant'},
-    // {value: 'rl', label: 'Rocket League'}
 ]
 const platformOptions = [
     {value: 'medal', label: 'Medal'},
@@ -50,13 +49,11 @@ const rankOptions = [
 
 const CreateClip = () => {
 
-    const [gameSelectedOption, setGameSelctionOption] = useState("");
-    const [platformSelectedOption, setPlatformSelectedOption] = useState("");
-    const [rankOption, setRankOption] = useState("");
+    const [gameSelectedOption, setGameSelctionOption] = useState({value: 'val', label: 'Valorant'});
+    const [platformSelectedOption, setPlatformSelectedOption] = useState({value: 'medal', label: 'Medal'});
+    const [rankOption, setRankOption] = useState({value: 'iron1', label: 'Iron 1'});
     const [videoURL, setVideoURL] = useState("");
     const [clipTitle, setClipTitle] = useState("");
-
-    const [submitted, setSubmitted] = useState(false);
 
     const { user } = useUser();
     const router = useRouter();
@@ -80,7 +77,6 @@ const CreateClip = () => {
             game: gameSelectedOption.value,
             videoName: clipTitle
         }).then(res => {
-            console.log(res.data);
             router.push(`/valorant/${res.data.id}`)
         });
     }

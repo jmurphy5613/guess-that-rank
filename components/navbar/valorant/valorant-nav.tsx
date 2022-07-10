@@ -1,11 +1,13 @@
 import styles from './valorant-nav.module.css';
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 
 
 const ValorantNavbar = () => {
 
+    const router = useRouter();
     const { user } = useUser();
 
     return (
@@ -13,12 +15,16 @@ const ValorantNavbar = () => {
             <img src="/logo.png" className={styles.logo} />
             <div className={styles["button-wrapper"]}>
                 <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
-                {user && <Link href="/api/auth/logout">
-                    <button className={styles.signin}>Logout</button>
-                </Link>}
-                {!user && <Link href="/api/auth/login">
-                    <button className={styles.signin}>Login</button>\
-                </Link>}
+                {user && 
+                    <button className={styles.signin} onClick={e => {
+                        router.push('/api/auth/logout');
+                    }}>Logout</button>
+                }
+                {!user && 
+                    <button className={styles.signin} onClick={e => {
+                        router.push('/api/auth/login');
+                    }}>Login</button>
+                }
             </div>
         </div>
     )
