@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import styles from '../../styles/App.module.css';
 import Navbar from '../../components/navbar/navbar';
 import axios from 'axios';
@@ -102,7 +104,7 @@ const ClipPage = () => {
                 <h2 className={styles.thankyou}>Thanks for sumbitting this clip!</h2>
                 }
             </div>
-            <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameborder="0" allow="autoplay" allowfullscreen></iframe>
+            <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameBorder="0" allow="autoplay" allowFullScreen></iframe>
 
             {guessed && <PostGuessPopup correct={correct} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
 

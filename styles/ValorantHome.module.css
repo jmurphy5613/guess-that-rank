@@ -68,3 +68,22 @@
   cursor: pointer;
   color: white;
 }
+
+.go-back {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+.go-back:hover {
+    cursor: pointer;
+}
+
+.back-text {
+    color: white;
+    font-family: "Inter";
+    font-weight: 400;
+    margin-left: 1rem;
+}

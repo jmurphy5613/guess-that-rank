@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import styles from '../../styles/ValorantHome.module.css';
 import ValorantNavbar from '../../components/navbar/valorant/valorant-nav';
 import { useState, useEffect } from 'react';
@@ -7,6 +9,7 @@ import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import ClipGrid from '../../components/valorant/clip-grid/ClipGrid';
+import { AiOutlineLeft } from 'react-icons/ai';
 
 
 const ValorantHome = () => {
@@ -63,6 +66,14 @@ const ValorantHome = () => {
 
     return (
         <div className={styles.root}>
+
+            <div className={styles["go-back"]} onClick={() => {
+                router.push('/')
+            }}>
+                <AiOutlineLeft color="#C25Eff" />
+                <h3 className={styles["back-text"]}>Go Back</h3>
+            </div>
+
             <button className={styles.play} onClick={() => {
                 if(incompleteClips.length === 0) playedAllCips();
                 else {

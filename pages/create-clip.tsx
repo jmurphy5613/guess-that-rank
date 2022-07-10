@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import styles from '../styles/CreateClip.module.css';
 import Select from 'react-select';
 import { AiOutlineLeft } from 'react-icons/ai';
@@ -11,7 +13,7 @@ import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
 
 const gameOptions = [
     {value: 'val', label: 'Valorant'},
-    {value: 'rl', label: 'Rocket League'}
+    // {value: 'rl', label: 'Rocket League'}
 ]
 const platformOptions = [
     {value: 'medal', label: 'Medal'},
@@ -95,16 +97,19 @@ const CreateClip = () => {
 
             <h1 className={styles.title}>Upload your own clip!</h1>
             <Select
+                placeholder="Select the game"
                 className={styles.select}
                 options={gameOptions}
                 onChange={setGameSelctionOption}
             />
             <Select
+                placeholder="Select a platform"
                 className={styles.select}
                 options={platformOptions}
                 onChange={setPlatformSelectedOption}
             />
             <Select 
+                placeholder="Select a rank"
                 className={styles.select}
                 options={rankOptions}
                 onChange={setRankOption}

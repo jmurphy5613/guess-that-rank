@@ -1,3 +1,6 @@
+// @ts-nocheck
+
+
 import styles from './ClipGrid.module.css';
 import { useRouter } from 'next/router';
 
@@ -11,9 +14,9 @@ const ClipGrid:React.FC<ClipGridProps> = ({ clips }) => {
 
     return (
         <div className={styles.grid}>
-            {clips.map(item => {
+            {clips.map((item, index) => {
                 return (
-                    <div className={styles["grid-item"]} onClick={e => {
+                    <div className={styles["grid-item"]} key={index} onClick={e => {
                         router.push(`/valorant/${item.id}`)
                     }}>
                         <img className={styles.video} src={`//image.thum.io/get/${item.videoURL}`} />
