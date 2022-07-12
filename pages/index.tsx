@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    ReactGa.initialize('G-812GL48H6Q');
+    ReactGa.initialize('UA-234221342-1');
     ReactGa.pageview(router.pathname);
   }, []);
 
