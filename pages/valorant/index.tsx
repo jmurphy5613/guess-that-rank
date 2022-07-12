@@ -17,7 +17,7 @@ const ValorantHome = () => {
     const { user } = useUser();
     const router = useRouter();
 
-    const [tabSelected, setTabSelected] = useState("completed");
+    const [tabSelected, setTabSelected] = useState("incompleted");
 
     const [incompleteClips, setIncompleteClips] = useState([]);
     const [completedClips, setCompletedClips] = useState([]);
