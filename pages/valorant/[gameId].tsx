@@ -67,11 +67,11 @@ const ClipPage = () => {
         if(!router.isReady) return;
 
         const { gameId } = router.query;
-        axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
         });
 
-        axios.get(`http://localhost:3002/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
             setAlreadyGuessed(e.data.response);
         })
 
@@ -84,7 +84,7 @@ const ClipPage = () => {
     }
 
     const handleGuess = () => {
-        axios.post(`http://localhost:3002/guess/add`, {
+        axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
             clipId: parseInt(gameId),
             rank: selectedRank.value,
             user: user?.nickname,

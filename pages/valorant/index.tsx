@@ -27,10 +27,10 @@ const ValorantHome = () => {
 
     useEffect(() => {
         if(!user) return;
-        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user.nickname}`).then(e => {
             setIncompleteClips(e.data);
         });
-        axios.get(`http://localhost:3002/guess/guessed-clips/${user.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/guessed-clips/${user.nickname}`).then(e => {
             setCompletedClips(e.data);
         })
         setDataFetched(true);

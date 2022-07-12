@@ -20,10 +20,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     const [unGuessedClips, setUnGuessedClips] = useState([{} as any]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3002/guess/percent-correct/${clipId}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/percent-correct/${clipId}`).then(e => {
             setPercentCorrect(e.data.percent);
         });
-        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user?.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
     }, [])

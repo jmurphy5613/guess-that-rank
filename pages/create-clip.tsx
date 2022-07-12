@@ -16,7 +16,6 @@ const gameOptions = [
 ]
 const platformOptions = [
     {value: 'medal', label: 'Medal'},
-    {value: 'youtube', label: 'Youtube'}
 ]
 
 const rankOptions = [
@@ -61,16 +60,16 @@ const CreateClip = () => {
 
 
     const getUsername = () => {
-        if(user) {
-            return user.nickname;
+        if(customDisplayName !== "") {
+            return customDisplayName;
         } else {
-            return 'Guest'
+            return user?.nickname;
         }
     }
 
 
     const uploadClip = () => {
-        axios.post('http://localhost:3002/clips/add-clip', {
+        axios.post('https://guessthatrank.herokuapp.com/clips/add-clip', {
             videoSource: platformSelectedOption.value,
             videoURL: `https://medal.tv/games/valorant/clip${medalConvert(videoURL)}`,
             user: getUsername(),
@@ -80,6 +79,16 @@ const CreateClip = () => {
         }).then(res => {
             router.push(`/valorant/${res.data.id}`)
         });
+
+        //if there is a custom display name, register it
+        if(customDisplayName !== "") {
+            axios.post('https://guessthatrank.herokuapp.com/users/add-display-name', {
+                user: user?.nickname,
+                displayName: customDisplayName
+            }).then(res => {
+                console.log(res);
+            });
+        }
     }
 
     return (
@@ -116,6 +125,9 @@ const CreateClip = () => {
             }} />
             <input className={styles["url-input"]} placeholder={"Clip Title"} onChange={e => {
                 setClipTitle(e.target.value);
+            }} />
+            <input className={styles["url-input"]} placeholder={"Custom Display Name (optional)"} onChange={e => {
+                setCustomDisplayName(e.target.value);
             }} />
             <button className={styles.submit} onClick={e => {
                 uploadClip();

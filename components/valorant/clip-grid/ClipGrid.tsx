@@ -19,7 +19,7 @@ const ClipGrid:React.FC<ClipGridProps> = ({ clips }) => {
                     <div className={styles["grid-item"]} key={index} onClick={e => {
                         router.push(`/valorant/${item.id}`)
                     }}>
-                        <img className={styles.video} src={`//image.thum.io/get/${item.videoURL}`} />
+                        <img className={styles.video} src={`//image.thum.io/get/auth/60836-jmurphy5613/${item.videoURL}`} />
                         <h4 className={styles.title}>{item.videoName}&nbsp;<span style={{ color: '#C25Eff' }}>@{item.user}</span></h4>
 
                     </div>
