@@ -58,7 +58,9 @@ const ClipPage = () => {
     const [correct, setCorrect] = useState(false);
     const [correctRank, setCorrectRank] = useState("");
 
-    const [dataFetched, setDataFetched] = useState(false)
+    const [dataFetched, setDataFetched] = useState(false);
+
+    const [alreadyGuessed, setAlreadyGuessed] = useState("");
 
     useEffect(() => {
         //fetch data here
@@ -68,6 +70,11 @@ const ClipPage = () => {
         axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
         });
+
+        axios.get(`http://localhost:3002/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
+            setAlreadyGuessed(e.data.response);
+        })
+
         setDataFetched(true);
 
     }, [router.isReady]);
@@ -94,7 +101,7 @@ const ClipPage = () => {
     return (
         <div className={styles.root}>
             <Navbar username={currentClip.user} title={currentClip.videoName} />
-            <div style={{ display: 'flex' }}>
+            {alreadyGuessed == "false" && <div style={{ display: 'flex' }}>
                 {user?.nickname !== currentClip.user ?                 
                 <>
                     <Select 
@@ -106,8 +113,8 @@ const ClipPage = () => {
                 </>
                 :
                 <h2 className={styles.thankyou}>Thanks for sumbitting this clip!</h2>
-                }
-            </div>
+            }
+            </div>}
             <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameBorder="0" allow="autoplay" allowFullScreen></iframe>
 
             {guessed && <PostGuessPopup correct={isCorrect()} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
