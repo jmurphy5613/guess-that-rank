@@ -54,6 +54,7 @@ const CreateClip = () => {
     const [rankOption, setRankOption] = useState({value: 'iron1', label: 'Iron 1'});
     const [videoURL, setVideoURL] = useState("");
     const [clipTitle, setClipTitle] = useState("");
+    const [customDisplayName, setCustomDisplayName] = useState("");
 
     const { user } = useUser();
     const router = useRouter();

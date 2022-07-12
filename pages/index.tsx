@@ -2,12 +2,19 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
+import ReactGa from 'react-ga';
+import { useEffect } from 'react';
 
 
 const Home: NextPage = () => {
 
   const router = useRouter();
   const { user } = useUser();
+
+  useEffect(() => {
+    ReactGa.initialize('G-812GL48H6Q');
+    ReactGa.pageview(router.pathname);
+  }, []);
 
   return (
     <div className={styles.root}>
