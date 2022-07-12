@@ -14,9 +14,9 @@ const rankOptions = [
     {value: 'iron1', label: 'Iron 1'},
     {value: 'iron2', label: 'Iron 2'},
     {value: 'iron3', label: 'Iron 3'},
-    {value: 'brronze1', label: 'Bronze 1'},
-    {value: 'brronze2', label: 'Bronze 2'},
-    {value: 'brronze3', label: 'Bronze 3'},
+    {value: 'bronze1', label: 'Bronze 1'},
+    {value: 'bronze2', label: 'Bronze 2'},
+    {value: 'bronze3', label: 'Bronze 3'},
     {value: 'silver1', label: 'Silver 1'},
     {value: 'silver2', label: 'Silver 2'},
     {value: 'silver3', label: 'Silver 3'},
@@ -72,11 +72,16 @@ const ClipPage = () => {
 
     }, [router.isReady]);
 
+    const isCorrect = () => {
+        return selectedRank.value === currentClip.rank;
+    }
+
     const handleGuess = () => {
         axios.post(`http://localhost:3002/guess/add`, {
             clipId: parseInt(gameId),
             rank: selectedRank.value,
-            user: user?.nickname
+            user: user?.nickname,
+            isCorrect: isCorrect()
         }).then(e => {
             setCorrectRank(e.data.correctRank);
             if(e.data.response == correct) setCorrect(true);
@@ -105,7 +110,7 @@ const ClipPage = () => {
             </div>
             <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameBorder="0" allow="autoplay" allowFullScreen></iframe>
 
-            {guessed && <PostGuessPopup correct={correct} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
+            {guessed && <PostGuessPopup correct={isCorrect()} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
 
         </div>
     )
