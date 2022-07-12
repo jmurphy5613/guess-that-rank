@@ -24,8 +24,6 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
         });
     }, [])
 
-    console.log(unGuessedClips)
-
     return (
         <div className={styles.root}>
             <div className={styles.popup}>
@@ -39,7 +37,8 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     <h2 className={styles["actual-rank"]}>Correct!</h2>
                 }
                 <button className={styles["go-next"]} onClick={e => {
-                    router.push(`/valorant/${unGuessedClips[0].id}`)
+                    router.push(`/valorant/${unGuessedClips[0].id}`);
+                    router.reload();
                 }}>Go Next</button>
             </div>
         </div>
