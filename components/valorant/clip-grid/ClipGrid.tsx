@@ -20,7 +20,7 @@ const ClipGrid:React.FC<ClipGridProps> = ({ clips }) => {
                         router.push(`/valorant/${item.id}`)
                     }}>
                         <img className={styles.video} src={`//image.thum.io/get/auth/60836-jmurphy5613/${item.videoURL}`} />
-                        <h4 className={styles.title}>{item.videoName}&nbsp;<span style={{ color: '#C25Eff' }}>@{item.user}</span></h4>
+                        {item.videoName.length > 15 ? <h4 className={styles.title}>{item.videoName.substring(0, 15)}...&nbsp;<span style={{ color: '#C25Eff' }}>@{item.user}</span></h4> : <h4 className={styles.title}>{item.videoName}&nbsp;<span style={{ color: '#C25Eff' }}>@{item.user}</span></h4>}
 
                     </div>
                 )
