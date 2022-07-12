@@ -1,7 +1,7 @@
 import styles from '../styles/Login.module.css';
 import { useRouter } from 'next/router';
 
-const userSelection = () => {
+const Login = () => {
 
     const router = useRouter();
 
@@ -18,4 +18,4 @@ const userSelection = () => {
     )
 }
 
-export default userSelection;
+export default Login;
