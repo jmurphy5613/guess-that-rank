@@ -4,11 +4,13 @@ import styles from '../styles/CreateClip.module.css';
 import Select from 'react-select';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 import { medalConvert } from '../utils/formatting';
 import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
+
+import ReactGa from 'react-ga';
 
 
 const gameOptions = [
@@ -90,6 +92,11 @@ const CreateClip = () => {
             });
         }
     }
+
+    useEffect(() => {
+        ReactGa.initialize('UA-234221342-1');
+        ReactGa.pageview(router.pathname);
+    }, [router.isReady]);
 
     return (
         <div className={styles.root}>

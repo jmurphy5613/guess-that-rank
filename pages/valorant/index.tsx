@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import ClipGrid from '../../components/valorant/clip-grid/ClipGrid';
 import { AiOutlineLeft } from 'react-icons/ai';
+import ReactGa from 'react-ga';
 
 
 const ValorantHome = () => {
@@ -27,6 +28,10 @@ const ValorantHome = () => {
 
     useEffect(() => {
         if(!user) return;
+
+        ReactGa.initialize('UA-234221342-1');
+        ReactGa.pageview(router.pathname);
+        
         axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user.nickname}`).then(e => {
             setIncompleteClips(e.data);
         });
@@ -35,7 +40,7 @@ const ValorantHome = () => {
         })
         setDataFetched(true);
 
-    }, [user])
+    }, [user, router.isReady])
 
 
     const noAccountNotify = () => {

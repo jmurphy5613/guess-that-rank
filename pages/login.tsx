@@ -1,9 +1,16 @@
 import styles from '../styles/Login.module.css';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import ReactGa from 'react-ga';
 
 const Login = () => {
 
     const router = useRouter();
+
+    useEffect(() => {
+        ReactGa.initialize('UA-234221342-1');
+        ReactGa.pageview(router.pathname);
+    }, [router.isReady]);
 
     return (
         <div className={styles.root}>

@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import Select from 'react-select';
 import PostGuessPopup from '../../components/post-guess-popup/PostGuessPopup';
+import ReactGa from 'react-ga';
 
 
 const rankOptions = [
@@ -65,6 +66,9 @@ const ClipPage = () => {
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
+
+        ReactGa.initialize('UA-234221342-1');
+        ReactGa.pageview(router.pathname);
 
         const { gameId } = router.query;
         axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {

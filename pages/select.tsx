@@ -3,11 +3,18 @@
 import styles from '../styles/ChooseGame.module.css';
 import { useRouter } from 'next/router';
 import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
+import { useEffect } from 'react';
+import ReactGa from 'react-ga';
 
 
 const ChooseGame = () => {
 
     const router = useRouter();
+
+    useEffect(() => {
+        ReactGa.initialize('UA-234221342-1');
+        ReactGa.pageview(router.pathname);
+    }, [router.isReady]);
 
     return (
         <div className={styles.root}>
