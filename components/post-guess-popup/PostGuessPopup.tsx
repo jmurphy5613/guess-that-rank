@@ -16,13 +16,9 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     const router = useRouter();
     const { user } = useUser();
 
-    const [percentCorrect, setPercentCorrect] = useState(0);
     const [unGuessedClips, setUnGuessedClips] = useState([{} as any]);
 
     useEffect(() => {
-        axios.get(`https://guessthatrank.herokuapp.com/percent-correct/${clipId}`).then(e => {
-            setPercentCorrect(e.data.percent);
-        });
         axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
@@ -42,7 +38,6 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                 {correct &&
                     <h2 className={styles["actual-rank"]}>Correct!</h2>
                 }
-                <h2 className={styles.stats}>{percentCorrect}% got this correct</h2>
                 <button className={styles["go-next"]} onClick={e => {
                     router.push(`/valorant/${unGuessedClips[0].id}`)
                 }}>Go Next</button>
