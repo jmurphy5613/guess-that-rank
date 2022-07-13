@@ -30,7 +30,6 @@ const Home: NextPage = () => {
             }
           }}>Open App</button>
         </div>
-
       </div>
       <video autoPlay muted loop className={styles.video}>
           <source src='/full.mp4' type='video/mp4' />

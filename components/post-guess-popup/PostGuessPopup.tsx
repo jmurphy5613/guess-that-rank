@@ -10,7 +10,6 @@ interface PostGuessPopupProps {
     correctRank: string,
     clipId: number
 }
-import ConfettiExplosion from 'react-confetti-explosion';
 
 const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, correctRank, clipId }) => {
 
@@ -53,7 +52,6 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     }
                 }}>Go Next</button>
             </div>
-            {correct && <ConfettiExplosion />}
         </div>
     )
 }
