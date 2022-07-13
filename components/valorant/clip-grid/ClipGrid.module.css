@@ -13,13 +13,8 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid rgb(55, 80, 168);
-    /* border: 1px solid rgb(66,197,242); */
     background-color: rgb(28, 31, 49);
     border-radius: 1rem;
-    /* border: double 1px transparent;
-    background-image: linear-gradient(rgb(18, 19, 30), rgb(18, 19, 30)), linear-gradient(to right, #42c5f2 0%, #823f98 100%);
-    background-origin: border-box;
-    background-clip: content-box, border-box; */
     transition: 0.5s;
 }
 .grid-item:hover {
@@ -41,4 +36,14 @@
     object-fit: cover;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+    .grid {
+        width: 80vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+        margin-top: 3rem;
+    }
 }

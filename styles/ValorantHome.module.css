@@ -87,3 +87,24 @@
     font-weight: 400;
     margin-left: 1rem;
 }
+
+@media screen and (max-width: 450px) {
+    .root {
+        height: 100%;
+        width: 100%;
+        padding-bottom: 3rem;
+        min-height: 100vh;
+    }
+
+    .tab {
+        margin: 0;
+    }
+
+    .play {
+        display: none;
+    }
+
+    .go-back {
+        display: none;
+    }
+}

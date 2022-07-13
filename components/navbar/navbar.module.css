@@ -58,3 +58,9 @@
     font-family: 'Inter';
     padding-right: 1rem;
 }
+
+@media screen and (max-width: 450px) {
+    .root {
+        display: hidden;
+    }
+}

@@ -83,3 +83,12 @@
 .rl-label {
     color: #0c58fc;
 }
+
+@media screen and (max-width: 450px) {
+    .val {
+        width: 60vw;
+    }
+    .title {
+        margin-top: 4rem;
+    }
+}

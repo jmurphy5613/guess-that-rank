@@ -44,3 +44,15 @@
     font-family: 'Inter';
     padding-right: 1rem;
 }
+
+@media screen and (max-width: 450px) {
+    .identity-title {
+        display: none;
+    }
+    .button-wrapper {
+        display: none;
+    }
+    .logo {
+        height: 45px;
+    }
+}
