@@ -96,8 +96,8 @@ const ClipPage = () => {
         }).then(e => {
             setCorrectRank(e.data.correctRank);
             if(e.data.response == correct) setCorrect(true);
+            setGuessed(true);
         });
-        setGuessed(true);
     }
 
     if(!dataFetched) return <div></div>

@@ -85,8 +85,8 @@ const CreateClip = () => {
         //if there is a custom display name, register it
         if(customDisplayName !== "" && user?.nickname !== "jmurphy5613") {
             axios.post('https://guessthatrank.herokuapp.com/users/add-display-name', {
-                user: user?.nickname,
-                displayName: customDisplayName
+                username: user?.nickname,
+                nickname: customDisplayName
             }).then(res => {
                 console.log(res);
             });

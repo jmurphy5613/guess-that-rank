@@ -28,6 +28,7 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
         axios.get(`https://guessthatrank.herokuapp.com/guess/record/${user?.nickname}`).then(e => {
             setNumberCorrect(e.data.correct);
             setNumberIncorrect(e.data.total - e.data.correct);
+            console.log(e.data.total);
         })
     }, [])
 
@@ -45,8 +46,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     <h2 className={styles["actual-rank"]}>Correct!</h2>
                 }
                 <button className={styles["go-next"]} onClick={e => {
-                    router.push(`/valorant/${unGuessedClips[0].id}`);
-                    router.reload();
+                    if(unGuessedClips.length  == 0) router.push('/valorant');
+                    else {
+                        router.push(`/valorant/${unGuessedClips[0].id}`);
+                    }
                 }}>Go Next</button>
             </div>
         </div>
