@@ -10,6 +10,7 @@ interface PostGuessPopupProps {
     correctRank: string,
     clipId: number
 }
+import ConfettiExplosion from 'react-confetti-explosion';
 
 const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, correctRank, clipId }) => {
 
@@ -48,10 +49,11 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                 <button className={styles["go-next"]} onClick={e => {
                     if(unGuessedClips.length  == 0) router.push('/valorant');
                     else {
-                        router.push(`/valorant/${unGuessedClips[0].id}`);
+                        router.push(`/valorant/gameId=${unGuessedClips[0].id}`, `/valorant/${unGuessedClips[0].id}`);
                     }
                 }}>Go Next</button>
             </div>
+            {correct && <ConfettiExplosion />}
         </div>
     )
 }

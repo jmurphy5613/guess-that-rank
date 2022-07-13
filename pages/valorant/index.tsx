@@ -79,12 +79,12 @@ const ValorantHome = () => {
                 <h3 className={styles["back-text"]}>Go Back</h3>
             </div>
 
-            <button className={styles.play} onClick={() => {
+            {/* <button className={styles.play} onClick={() => {
                 if(incompleteClips.length === 0) playedAllCips();
                 else {
                     router.push(`/valorant/${incompleteClips[0].id}`);
                 }
-            }}>Play</button>
+            }}>Play</button> */}
             <button className={styles["create-clip"]} onClick={() => {
                 if(user) {
                     router.push('/create-clip')
