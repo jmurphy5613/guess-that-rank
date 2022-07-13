@@ -18,15 +18,23 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
 
     const [unGuessedClips, setUnGuessedClips] = useState([{} as any]);
 
+    const [numberCorrect, setNumberCorrect] = useState(0);
+    const [numberIncorrect, setNumberIncorrect] = useState(0);
+
     useEffect(() => {
         axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
+        axios.get(`https://guessthatrank.herokuapp.com/guess/record/${user?.nickname}`).then(e => {
+            setNumberCorrect(e.data.correct);
+            setNumberIncorrect(e.data.total - e.data.correct);
+        })
     }, [])
 
     return (
         <div className={styles.root}>
             <div className={styles.popup}>
+                <h1 style={{ color: 'white' }}>{`Record: ${numberCorrect}-${numberIncorrect}`}</h1>
                 {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLong(rankGuessed)}</h2>}
                 {!correct &&
                 <>
