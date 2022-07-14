@@ -79,19 +79,21 @@ const ValorantHome = () => {
                 <h3 className={styles["back-text"]}>Go Back</h3>
             </div>
 
-            {/* <button className={styles.play} onClick={() => {
-                if(incompleteClips.length === 0) playedAllCips();
-                else {
-                    router.push(`/valorant/${incompleteClips[0].id}`);
-                }
-            }}>Play</button> */}
-            <button className={styles["create-clip"]} onClick={() => {
-                if(user) {
-                    router.push('/create-clip')
-                } else {
-                    noAccountNotify();
-                }
-            }}>+</button>
+            <div className={styles["button-container"]}>
+                <button className={styles.play} onClick={() => {
+                    if(incompleteClips.length === 0) playedAllCips();
+                    else {
+                        router.push(`/valorant/${incompleteClips[0].id}`);
+                    }
+                }}>Play</button>
+                <button className={styles.play} onClick={e => {
+                    if(user) {
+                        router.push('/create-clip')
+                    } else {
+                        noAccountNotify();
+                    }
+                }}>Create clip</button>
+            </div>
             <ValorantNavbar />
             <div className={styles["tabs"]}>
                 <div className={styles["tab-container"]}>

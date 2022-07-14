@@ -38,27 +38,9 @@
     overflow-x: hidden;
 }
 
-.create-clip {
-    position: absolute;
-    height: 2rem;
-    width: 2rem;
-    font-size: 1.3rem;
-    bottom: 1rem;
-    right: 1rem;
-    border: none;
-    background-color: #2c313d;
-    color: grey;
-    border-radius: 5px;
-    display: none;
-}
-.create-clip:hover {
-    cursor: pointer;
-}
-
 .play {
     width: 12rem;
     height: 2.5rem;
-    position: absolute;
     border: none;
     background-color: white;
     color: black;
@@ -66,7 +48,7 @@
     font-weight: 700;
     border-radius: 10px;
     transition: 0.5s;
-    bottom: 2rem;
+    margin: 1rem;
 }
 .play:hover {
   background: #C25Eff;
@@ -91,6 +73,14 @@
     font-family: "Inter";
     font-weight: 400;
     margin-left: 1rem;
+}
+
+.button-container {
+    display: flex;
+    position: absolute;
+    bottom: 2rem;
+    width: 100vw;
+    justify-content: center;
 }
 
 @media screen and (max-width: 450px) {
