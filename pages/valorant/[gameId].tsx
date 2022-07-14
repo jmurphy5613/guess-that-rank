@@ -41,7 +41,7 @@ const rankOptions = [
 
 const ClipPage = () => {
 
-    const {user} = useUser();
+    const { user } = useUser();
     const router = useRouter();
     const { gameId } = router.query;
 
@@ -105,7 +105,7 @@ const ClipPage = () => {
     return (
         <div className={styles.root}>
             <Navbar username={currentClip.user} title={currentClip.videoName} />
-            {alreadyGuessed == "false" && <div style={{ display: 'flex' }}>
+            {alreadyGuessed == "false" && <div style={{ display: 'flex', maxWidth: '100vw' }}>
                 {user?.nickname !== currentClip.user ?                 
                 <>
                     <Select 

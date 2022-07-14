@@ -61,6 +61,15 @@
 
 @media screen and (max-width: 450px) {
     .root {
-        display: hidden;
+        
+    }
+    .title {
+        font-size: 1rem;
+    }
+    .identity-title {
+        display: none;
+    }
+    .signin {
+        display: none;
     }
 }
