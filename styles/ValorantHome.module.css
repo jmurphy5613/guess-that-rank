@@ -78,9 +78,11 @@
 .button-container {
     display: flex;
     position: absolute;
+    position: fixed;
     bottom: 2rem;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
+    z-index: 9999;
 }
 
 @media screen and (max-width: 450px) {
