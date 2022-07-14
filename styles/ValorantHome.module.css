@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-bottom: 3rem;
+    padding-bottom: 10rem;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -94,7 +94,13 @@
     }
 
     .tab {
-        margin: 0;
+        margin: 0 0 0.5rem 0;
+        font-size: 1rem;
+    }
+    .tab-indicator {
+        width: 9rem;
+        height: 2px;
+        background-color: #C25Eff;
     }
 
     .play {
