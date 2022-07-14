@@ -36,12 +36,18 @@ export const shortRankToLong = (shortRank) => {
             return 'Diamond 2';
         case 'diamond3':
             return 'Diamond 3';
-        case 'asscendant1':
+        case 'ascendant1':
             return 'Ascendant 1';
-        case 'asscendant2':
+        case 'sscendant2':
             return 'Ascendant 2';
-        case 'asscendant3':
+        case 'ascendant3':
             return 'Ascendant 3';
+        case 'immortal1':
+            return 'Immortal 1';
+        case 'immortal2':
+            return 'Immortal 2';
+        case 'immortal3':
+            return 'Immortal 3';
         case 'radiant':
             return 'Radiant';
     }
