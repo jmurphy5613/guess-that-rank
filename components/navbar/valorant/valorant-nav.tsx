@@ -1,6 +1,7 @@
 import styles from './valorant-nav.module.css';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 
@@ -11,9 +12,9 @@ const ValorantNavbar = () => {
 
     return (
         <div className={styles.root}>
-            <a href="/">
+            <Link href="/">
                 <img src="/logo.png" className={styles.logo} />
-            </a>
+            </Link>
             <div className={styles["button-wrapper"]}>
                 <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
                 {user && 
