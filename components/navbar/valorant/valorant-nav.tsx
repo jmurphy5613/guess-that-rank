@@ -11,7 +11,9 @@ const ValorantNavbar = () => {
 
     return (
         <div className={styles.root}>
-            <img src="/logo.png" className={styles.logo} />
+            <a href="/">
+                <img src="/logo.png" className={styles.logo} />
+            </a>
             <div className={styles["button-wrapper"]}>
                 <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
                 {user && 

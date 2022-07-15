@@ -12,6 +12,9 @@
     height: 70px;
     margin-top: 1rem;
 }
+.logo:hover {
+    cursor: pointer;
+}
 
 .signin {
     width: 8rem;
