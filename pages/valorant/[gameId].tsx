@@ -70,8 +70,8 @@ const ClipPage = () => {
 
         if(!user) {
             const guessedClips = localStorage.getItem('guessedClipsValorant');
-            if(guessedClips?.indexOf(gameId) !== -1) {
-                setAlreadyGuessed('false');
+            if(guessedClips?.indexOf(gameId) == -1) {
+                setAlreadyGuessed("false");
             }
 
             axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
@@ -106,14 +106,14 @@ const ClipPage = () => {
         if(!user) {
             localStorage.setItem('guessedClipsValorant', `${localStorage.getItem('guessedClipsValorant')},${gameId}`);
             axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
-                clipId: gameId,
+                clipId: parseInt(gameId),
                 user: 'guest',
                 rank: selectedRank.value,
                 isCorrect: isCorrect()
-            }).then(() => {
+            }).then(e => {
                 setGuessed(true);
-                setCorrect(isCorrect());
-                setCorrectRank(selectedRank.value);
+                if(e.data.response == correct) setCorrect(true);
+                setCorrectRank(e.data.correctRank);
             });
             return;
         }
@@ -123,7 +123,7 @@ const ClipPage = () => {
             rank: selectedRank.value,
             user: user?.nickname,
             isCorrect: isCorrect()
-        }).then(() => {
+        }).then(e => {
             setCorrectRank(e.data.correctRank);
             if(e.data.response == correct) setCorrect(true);
             setGuessed(true);

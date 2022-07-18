@@ -29,7 +29,9 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
             setNumberCorrect(e.data.correct);
             setNumberIncorrect(e.data.total - e.data.correct);
             console.log(e.data.total);
-        })
+        });
+
+        console.log(correct);
     }, [])
 
     return (
