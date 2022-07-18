@@ -21,7 +21,9 @@ const Login = () => {
                     router.push('/api/auth/login');
                 }}>Login</button>
                 <h3 className={styles.or}>Or</h3>
-                <button className={styles.option}>Continue as Guest</button>
+                <button className={styles.option} onClick={e => {
+                    router.push('/valorant');
+                }}>Continue as Guest</button>
             </div>
         </div>
     )

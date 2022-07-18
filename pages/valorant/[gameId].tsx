@@ -66,11 +66,25 @@ const ClipPage = () => {
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
+        const { gameId } = router.query;
+
+        if(!user) {
+            const guessedClips = localStorage.getItem('guessedClipsValorant');
+            if(guessedClips?.indexOf(gameId) !== -1) {
+                setAlreadyGuessed('false');
+            }
+
+            axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
+                setCurrentClip(e.data);
+            });
+
+            setDataFetched(true);
+            return;
+        }
 
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
 
-        const { gameId } = router.query;
         axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
         });
@@ -88,12 +102,28 @@ const ClipPage = () => {
     }
 
     const handleGuess = () => {
+
+        if(!user) {
+            localStorage.setItem('guessedClipsValorant', `${localStorage.getItem('guessedClipsValorant')},${gameId}`);
+            axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
+                clipId: gameId,
+                user: 'guest',
+                rank: selectedRank.value,
+                isCorrect: isCorrect()
+            }).then(() => {
+                setGuessed(true);
+                setCorrect(isCorrect());
+                setCorrectRank(selectedRank.value);
+            });
+            return;
+        }
+
         axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
             clipId: parseInt(gameId),
             rank: selectedRank.value,
             user: user?.nickname,
             isCorrect: isCorrect()
-        }).then(e => {
+        }).then(() => {
             setCorrectRank(e.data.correctRank);
             if(e.data.response == correct) setCorrect(true);
             setGuessed(true);

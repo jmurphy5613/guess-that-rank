@@ -27,7 +27,17 @@ const ValorantHome = () => {
 
 
     useEffect(() => {
-        if(!user) return;
+        if(!user) {
+
+            const guessedClips = localStorage.getItem('guessedClipsValorant');
+            axios.get('https://guessthatrank.herokuapp.com/clips/get-all').then(e => {
+                setIncompleteClips(e.data.filter(clip => !guessedClips?.includes(clip.id)));
+                setCompletedClips(e.data.filter(clip => guessedClips?.includes(clip.id)));
+            });
+
+            setDataFetched(true);
+            return;
+        }
 
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
@@ -40,7 +50,7 @@ const ValorantHome = () => {
         })
         setDataFetched(true);
 
-    }, [user, router.isReady])
+    }, [router.isReady])
 
 
     const noAccountNotify = () => {
