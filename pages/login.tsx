@@ -16,10 +16,12 @@ const Login = () => {
         <div className={styles.root}>
             <div className={styles["button-group"]}>
                 <img style={{ height: '50px', marginTop: '1rem' }} src="/logo.png" />
-                <h1 className={styles.title}>Login is required</h1>
+                <h1 className={styles.title}></h1>
                 <button className={styles.option} onClick={e => {
                     router.push('/api/auth/login');
                 }}>Login</button>
+                <h3 className={styles.or}>Or</h3>
+                <button className={styles.option}>Continue as Guest</button>
             </div>
         </div>
     )
