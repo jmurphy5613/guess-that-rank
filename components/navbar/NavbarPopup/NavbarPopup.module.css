@@ -1,0 +1,43 @@
+.popup-container {
+    width: 20rem;
+    height: 8rem;
+    background-color: #282933;
+    position: absolute;
+    top: 1rem;
+    right: -2rem;
+    border-radius: 2rem;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.icon {
+    height: 50px;
+    border-radius: 100%;
+}
+.icon:hover {
+    cursor: pointer;
+}
+
+.button {
+    width: 90%;
+    height: 2.5rem;
+    border: none;
+    background-color: white;
+    color: black;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-radius: 10px;
+    transition: 0.5s;
+    margin-left: 1rem;
+    outline: none;
+    margin: auto;
+}
+.button:hover {
+  background: #C25Eff;
+  cursor: pointer;
+  color: white;
+}
+.button:focus {
+    outline: none;
+}

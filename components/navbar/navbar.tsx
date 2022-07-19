@@ -3,6 +3,9 @@ import { AiOutlineLeft } from 'react-icons/ai';
 
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
+import { useState } from 'react';
+
+import NavbarPopup from './NavbarPopup/NavbarPopup';
 
 type NavbarProps = {
     title: string,
@@ -15,6 +18,8 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
 
     const { user } = useUser();
 
+    const [showPopup, setShowPopup] = useState(false);
+
     return (
         <div className={styles.root}>
             <h1 className={styles.title}>
@@ -25,11 +30,9 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
                 <span className={styles.pink}>{`@${username}`}</span>
             </h1>
             <div className={styles["button-wrapper"]}>
-                <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
+                {/* <h2 className={styles["identity-title"]}>{user?.nickname}</h2> */}
                 {user && 
-                    <button className={styles.signin} onClick={e => {
-                        router.push("/api/auth/logout");
-                    }}>Logout</button>
+                    <NavbarPopup />
                 }
                 {!user &&
                     <button className={styles.signin} onClick={e => {
