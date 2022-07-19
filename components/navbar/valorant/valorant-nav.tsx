@@ -2,6 +2,7 @@ import styles from './valorant-nav.module.css';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import NavbarPopup from '../NavbarPopup/NavbarPopup';
 
 
 
@@ -16,11 +17,8 @@ const ValorantNavbar = () => {
                 <img src="/logo.png" className={styles.logo} />
             </Link>
             <div className={styles["button-wrapper"]}>
-                <h2 className={styles["identity-title"]}>{user?.nickname}</h2>
                 {user && 
-                    <button className={styles.signin} onClick={e => {
-                        router.push('/api/auth/logout');
-                    }}>Logout</button>
+                    <NavbarPopup />
                 }
                 {!user && 
                     <button className={styles.signin} onClick={e => {
