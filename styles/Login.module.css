@@ -53,5 +53,9 @@
 }
 
 @media screen and (max-width: 450px) {
-    
+    .button-group {
+        width: 80vw;
+        height: 40vh;
+        flex-direction: column;
+    }
 }
