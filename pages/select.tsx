@@ -20,13 +20,24 @@ const ChooseGame = () => {
         <div className={styles.root}>
             <ValorantNavbar />
             <h1 className={styles.title}>Choose your game</h1>
-            <div className={styles.games}>
-                <div onClick={e => {
-                    router.push('/valorant')
-                }} className={styles.val}>
-                    <div className={styles.overlay}>
-                        <img src="/val.png" style={{ height: '70px', width: '80px' }} />
-                        <h2 className={styles["val-label"]}>Valorant</h2>
+            <div className={styles["games-container"]}>
+                <div className={styles.games}>
+                    <div onClick={e => {
+                        router.push('/valorant')
+                    }} className={styles.val}>
+                        <div className={styles.overlay}>
+                            <img src="/val.png" style={{ height: '70px', width: '80px' }} />
+                            <h2 className={styles["val-label"]}>Valorant</h2>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.games}>
+                    <div onClick={e => {
+                        router.push('/rocket-league')
+                    }} className={styles.rl}>
+                        <div className={styles.overlay}>
+                            <img src="/rl-logo.webp" style={{ height: '200px' }} />
+                        </div>
                     </div>
                 </div>
             </div>
