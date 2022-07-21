@@ -3,3 +3,11 @@
 export const medalConvert = (link) => {
     return link.substring(37, 64);
 }
+
+export const updatedMedalConvert = (link, game) => {
+    let divider = link.split('/');
+    const firstCode = divider[6];
+    const secondCode = divider[7].split('?')[0];
+    console.log(`https://medal.tv/games/${game}/clip/${firstCode}/${secondCode}`);
+    return `https://medal.tv/games/${game}/clip/${firstCode}/${secondCode}`;
+}

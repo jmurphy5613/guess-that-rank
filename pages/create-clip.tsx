@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
-import { medalConvert } from '../utils/formatting';
+import { updatedMedalConvert } from '../utils/formatting';
 import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
 
 import ReactGa from 'react-ga';
@@ -15,6 +15,7 @@ import ReactGa from 'react-ga';
 
 const gameOptions = [
     {value: 'val', label: 'Valorant'},
+    {value: 'rl', label: 'Rocket League'}
 ]
 const platformOptions = [
     {value: 'medal', label: 'Medal'},
@@ -69,17 +70,30 @@ const CreateClip = () => {
         }
     }
 
+    const getClipURL = () => {
+        if(gameSelectedOption.value === "val") {
+            return updatedMedalConvert(e.target.value, 'valorant');
+        } else if(gameSelectedOption.value === "rl") {
+            return updatedMedalConvert(e.target.value, 'rocket-league');
+        }
+        return "";
+    }
+
 
     const uploadClip = () => {
         axios.post('http://localhost:3002/clips/add-clip', {
             videoSource: platformSelectedOption.value,
-            videoURL: `https://medal.tv/games/valorant/clip${medalConvert(videoURL)}`,
+            videoURL: getClipURL(),
             user: getUsername(),
             rank: rankOption.value,
             game: gameSelectedOption.value,
             videoName: clipTitle
         }).then(res => {
-            router.push(`/valorant/${res.data.id}`)
+            if(gameSelectedOption.value === "val") {
+                router.push(`/valorant/${res.data.id}`)
+            } else if(gameSelectedOption.value === "rl") {
+                router.push(`/rocket-league/${res.data.id}`)
+            }
         });
 
         //if there is a custom display name, register it
