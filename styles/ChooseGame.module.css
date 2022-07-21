@@ -92,8 +92,14 @@
     .val {
         width: 60vw;
         margin: 2rem 0 0 0;
+        height: 30vh;
     }
-    .title {
-        margin-top: 4rem;
+    .rl {
+        width: 60vw;
+        margin: 2rem 0 0 0;
+        height: 30vh;
+    }
+    .games-container {
+        display: block;
     }
 }
