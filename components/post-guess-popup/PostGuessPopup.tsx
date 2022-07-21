@@ -22,10 +22,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     const [numberIncorrect, setNumberIncorrect] = useState(0);
 
     useEffect(() => {
-        axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
-        axios.get(`https://guessthatrank.herokuapp.com/guess/record/${user?.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/record/${user?.nickname}`).then(e => {
             setNumberCorrect(e.data.correct);
             setNumberIncorrect(e.data.total - e.data.correct);
             console.log(e.data.total);
