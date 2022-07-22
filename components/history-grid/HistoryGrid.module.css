@@ -1,0 +1,12 @@
+.grid {
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    margin-top: 3rem;
+}
+
+.grid-item {
+    width: 100%;
+    height: 5rem;
+}
