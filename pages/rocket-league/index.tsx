@@ -30,7 +30,7 @@ const ValorantHome = () => {
         if(!user) {
 
             const guessedClips = localStorage.getItem('guessedClipsValorant');
-            axios.get('http://localhost:3002/clips/get-all').then(e => {
+            axios.get('http://localhost:3002/clips/get-all/rl').then(e => {
                 setIncompleteClips(e.data.filter(clip => !guessedClips?.includes(clip.id)));
                 setCompletedClips(e.data.filter(clip => guessedClips?.includes(clip.id)));
             });
@@ -42,10 +42,10 @@ const ValorantHome = () => {
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
         
-        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/rl/not-guessed-clips/${user.nickname}`).then(e => {
             setIncompleteClips(e.data);
         });
-        axios.get(`http://localhost:3002/guess/guessed-clips/${user.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/rl/guessed-clips/${user.nickname}`).then(e => {
             setCompletedClips(e.data);
         })
         setDataFetched(true);
