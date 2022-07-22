@@ -26,11 +26,11 @@ const Profile = () => {
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
 
-        axios.get(`http://localhost:3002/clips/get-all/by-user/${username}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/clips/get-all/by-user/${username}`).then(e => {
             setAllClips(e.data);
         });
 
-        axios.get(`http://localhost:3002/guess/all-guesses/${username}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/all-guesses/${username}`).then(e => {
             console.log(e.data)
             setAllGuesses(e.data);
         });

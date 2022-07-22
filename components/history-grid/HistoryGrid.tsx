@@ -10,7 +10,7 @@ const HistoryGrid:React.FC<HistoryGridProps> = ({ guesses }) => {
         <div className={styles.grid}>
             {guesses.map((element, index) => {
                 return (
-                    <div className={styles["grid-item"]}>
+                    <div key={index} className={styles["grid-item"]}>
                         <h1>Hello World</h1>
                     </div>
                 )
