@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ReactGa from 'react-ga';
 import { AiOutlineLeft } from "react-icons/ai";
 import styles from '../../styles/Profile.module.css';
+import axios from "axios";
+import ClipGrid from "../../components/valorant/clip-grid/ClipGrid";
 
 
 const Profile = () => {
@@ -11,6 +13,8 @@ const Profile = () => {
     const { username } = router.query;
 
     const [tabSelected, setTabSelected] = useState("History");
+    const [allClips, setAllClips] = useState([]);
+    const [allGuesses, setAllGuesses] = useState([]);
     
     useEffect(() => {
         if(!router.isReady) {
@@ -19,6 +23,10 @@ const Profile = () => {
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
 
+        axios.get(`http://localhost:3002/clips/get-all/by-user/${username}`).then(e => {
+            console.log(e.data);
+            setAllClips(e.data);
+        });
     }, [router.isReady])
 
     return (
@@ -37,17 +45,18 @@ const Profile = () => {
             <div className={styles["tabs"]}>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
-                        setTabSelected("Hisory");
+                        setTabSelected("History");
                     }}>History ()</h2>
                     {tabSelected === "History" && <div className={styles["tab-indicator"]}></div>}
                 </div>
                 <div className={styles["tab-container"]}>
                     <h2 className={styles.tab} onClick={() => {
                         setTabSelected("Clips")
-                    }}>Clips ()</h2>
-                    {tabSelected === "CLips" && <div className={styles["tab-indicator"]}></div>}
+                    }}>Clips ({allClips.length})</h2>
+                    {tabSelected === "Clips" && <div className={styles["tab-indicator"]}></div>}
                 </div>
             </div>
+            {tabSelected === "Clips" && <ClipGrid clips={allClips} /> }
         </div>
     )
 }
