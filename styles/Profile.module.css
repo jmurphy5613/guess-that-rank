@@ -1,0 +1,68 @@
+.root {
+    background-color: rgb(18, 19, 30);
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    height: 8rem;
+    border-radius: 100%;
+    margin-top: 3rem;
+}
+
+.username {
+    color: white;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 800;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    color: white;
+    margin: 2rem 2rem 1rem 2rem;
+    width: 12rem;
+    text-align: center;
+}
+.tab:hover {
+    cursor: pointer;
+}
+
+.tab-indicator {
+    width: 12rem;
+    height: 2px;
+    background-color: #C25Eff;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.go-back {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+.go-back:hover {
+    cursor: pointer;
+}
+
+.back-text {
+    color: white;
+    font-family: "Inter";
+    font-weight: 400;
+    margin-left: 1rem;
+}

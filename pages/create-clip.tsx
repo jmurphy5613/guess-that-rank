@@ -21,7 +21,7 @@ const platformOptions = [
     {value: 'medal', label: 'Medal'},
 ]
 
-const rankOptions = [
+const valorantRankOptions = [
     {value: 'iron1', label: 'Iron 1'},
     {value: 'iron2', label: 'Iron 2'},
     {value: 'iron3', label: 'Iron 3'},
@@ -49,9 +49,34 @@ const rankOptions = [
     {value: 'radiant', label: 'Radiant'}
 ]
 
+const rocketLeagueRankOptions = [
+    {value: 'bronze1', label: 'Bronze 1'},
+    {value: 'bronze2', label: 'Bronze 2'},
+    {value: 'bronze3', label: 'Bronze 3'},
+    {value: 'silver1', label: 'Silver 1'},
+    {value: 'silver2', label: 'Silver 2'},
+    {value: 'silver3', label: 'Silver 3'},
+    {value: 'gold1', label: 'Gold 1'},
+    {value: 'gold2', label: 'Gold 2'},
+    {value: 'gold3', label: 'Gold 3'},
+    {value: 'plat1', label: 'Platinum 1'},
+    {value: 'plat2', label: 'Platinum 2'},
+    {value: 'plat3', label: 'Platinum 3'},
+    {value: 'diamond1', label: 'Diamond 1'},
+    {value: 'diamond2', label: 'Diamond 2'},
+    {value: 'diamond3', label: 'Diamond 3'},
+    {value: 'champ1', label: 'Champion 1'},
+    {value: 'champ2', label: 'Champion 2'},
+    {value: 'champ3', label: 'Champion 3'},
+    {value: 'gc1', label: 'Grand Champion 1'},
+    {value: 'gc2', label: 'Grand Champion 2'},
+    {value: 'gc3', label: 'Grand Champion 3'},
+    {value: 'ssl', label: 'Super Sonic Legend'},
+]
+
 const CreateClip = () => {
 
-    const [gameSelectedOption, setGameSelctionOption] = useState({value: 'val', label: 'Valorant'});
+    const [gameSelectedOption, setGameSelctionOption] = useState({value: '', label: ''});
     const [platformSelectedOption, setPlatformSelectedOption] = useState({value: 'medal', label: 'Medal'});
     const [rankOption, setRankOption] = useState({value: 'iron1', label: 'Iron 1'});
     const [videoURL, setVideoURL] = useState("");
@@ -72,9 +97,9 @@ const CreateClip = () => {
 
     const getClipURL = () => {
         if(gameSelectedOption.value === "val") {
-            return updatedMedalConvert(e.target.value, 'valorant');
+            return updatedMedalConvert(videoURL, 'valorant');
         } else if(gameSelectedOption.value === "rl") {
-            return updatedMedalConvert(e.target.value, 'rocket-league');
+            return updatedMedalConvert(videoURL, 'rocket-league');
         }
         return "";
     }
@@ -135,12 +160,18 @@ const CreateClip = () => {
                 options={platformOptions}
                 onChange={setPlatformSelectedOption}
             />
-            <Select 
+            {gameSelectedOption.value == "val" && <Select 
                 placeholder="Select a rank"
                 className={styles.select}
-                options={rankOptions}
+                options={valorantRankOptions}
                 onChange={setRankOption}
-            />
+            />}
+            {gameSelectedOption.value == "rl" && <Select 
+                placeholder="Select a rank"
+                className={styles.select}
+                options={rocketLeagueRankOptions}
+                onChange={setRankOption}
+            />}
             <input className={styles["url-input"]} placeholder={"Clip URL"} onChange={e => {
                 setVideoURL(e.target.value);
             }} />
