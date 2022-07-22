@@ -5,6 +5,7 @@ import { AiOutlineLeft } from "react-icons/ai";
 import styles from '../../styles/Profile.module.css';
 import axios from "axios";
 import ClipGrid from "../../components/valorant/clip-grid/ClipGrid";
+import HistoryGrid from "../../components/history-grid/HistoryGrid";
 
 
 const Profile = () => {
@@ -24,9 +25,14 @@ const Profile = () => {
         ReactGa.pageview(router.pathname);
 
         axios.get(`http://localhost:3002/clips/get-all/by-user/${username}`).then(e => {
-            console.log(e.data);
             setAllClips(e.data);
         });
+
+        axios.get(`http://localhost:3002/guess/all-guesses/${username}`).then(e => {
+            console.log(e.data)
+            setAllGuesses(e.data);
+        });
+
     }, [router.isReady])
 
     return (
@@ -57,6 +63,7 @@ const Profile = () => {
                 </div>
             </div>
             {tabSelected === "Clips" && <ClipGrid clips={allClips} /> }
+            {tabSelected === "History" && <HistoryGrid guesses={allGuesses} />}
         </div>
     )
 }

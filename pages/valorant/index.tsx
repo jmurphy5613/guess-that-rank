@@ -27,6 +27,7 @@ const ValorantHome = () => {
 
 
     useEffect(() => {
+        console.log("hey");
         if(!user) {
 
             const guessedClips = localStorage.getItem('guessedClipsValorant');
@@ -81,7 +82,6 @@ const ValorantHome = () => {
 
     return (
         <div className={styles.root}>
-
             <div className={styles["go-back"]} onClick={() => {
                 router.push('/')
             }}>
