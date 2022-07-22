@@ -22,7 +22,7 @@ const Login = () => {
                 }}>Login</button>
                 <h3 className={styles.or}>Or</h3>
                 <button className={styles.option} onClick={e => {
-                    router.push('/valorant');
+                    router.push('/select');
                 }}>Continue as Guest</button>
             </div>
         </div>
