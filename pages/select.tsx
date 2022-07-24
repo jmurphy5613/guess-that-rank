@@ -23,7 +23,7 @@ const ChooseGame = () => {
             <div className={styles["games-container"]}>
                 <div className={styles.games}>
                     <div onClick={e => {
-                        router.push('/valorant');
+                        window.location.href = "/valorant";
                     }} className={styles.val}>
                         <div className={styles.overlay}>
                             <img src="/val.png" style={{ height: '70px', width: '80px' }} />
@@ -33,7 +33,7 @@ const ChooseGame = () => {
                 </div>
                 <div className={styles.games}>
                     <div onClick={e => {
-                        router.push('/rocket-league');
+                        window.location.href = "/rocket-leage";
                     }} className={styles.rl}>
                         <div className={styles.overlay}>
                             <img src="/rl-logo.webp" style={{ height: '200px' }} />

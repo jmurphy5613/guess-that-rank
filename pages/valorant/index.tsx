@@ -41,13 +41,19 @@ const ValorantHome = () => {
 
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
+
+        console.log('ehllo');
+
+        if(user) {
+            axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/val/${user.nickname}`).then(e => {
+                console.log(e.data);
+                setIncompleteClips(e.data);
+            });
+            axios.get(`https://guessthatrank.herokuapp.com/guess/guessed-clips/val/${user.nickname}`).then(e => {
+                setCompletedClips(e.data);
+            })
+        }
         
-        axios.get(`https://guessthatrank.herokuapp.com/guess/val/not-guessed-clips/${user.nickname}`).then(e => {
-            setIncompleteClips(e.data);
-        });
-        axios.get(`https://guessthatrank.herokuapp.com/guess/val/guessed-clips/${user.nickname}`).then(e => {
-            setCompletedClips(e.data);
-        })
         setDataFetched(true);
 
     }, [router.isReady])
