@@ -78,6 +78,7 @@ const ClipPage = () => {
                 setCurrentClip(e.data);
             });
 
+
             setDataFetched(true);
             return;
         }
@@ -90,6 +91,7 @@ const ClipPage = () => {
         });
 
         axios.get(`https://guessthatrank.herokuapp.com/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
+            console.log(e.data.response);
             setAlreadyGuessed(e.data.response);
         })
 

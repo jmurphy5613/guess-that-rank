@@ -24,7 +24,7 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
         <div className={styles.root}>
             <h1 className={styles.title}>
                 <AiOutlineLeft onClick={() => {
-                    router.push('/valorant');
+                    window.location.href = "/valorant";
                 }} className={styles.arrow} color="#C25Eff" />
                 &quot;{title}&quot; by&nbsp;
                 <span className={styles.pink}>{`@${username}`}</span>
