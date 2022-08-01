@@ -33,7 +33,7 @@ const ChooseGame = () => {
                 </div>
                 <div className={styles.games}>
                     <div onClick={e => {
-                        window.location.href = "/rocket-leage";
+                        window.location.href = "/rocket-league";
                     }} className={styles.rl}>
                         <div className={styles.overlay}>
                             <img src="/rl-logo.webp" style={{ height: '200px' }} />

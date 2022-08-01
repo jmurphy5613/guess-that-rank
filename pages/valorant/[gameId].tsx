@@ -74,7 +74,7 @@ const ClipPage = () => {
                 setAlreadyGuessed("false");
             }
 
-            axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
+            axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
                 setCurrentClip(e.data);
             });
 
@@ -86,11 +86,11 @@ const ClipPage = () => {
         ReactGa.initialize('UA-234221342-1');
         ReactGa.pageview(router.pathname);
 
-        axios.get(`https://guessthatrank.herokuapp.com/clips/by-id/${gameId}`).then(e => {
+        axios.get(`http://localhost:3002/clips/by-id/${gameId}`).then(e => {
             setCurrentClip(e.data);
         });
 
-        axios.get(`https://guessthatrank.herokuapp.com/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
+        axios.get(`http://localhost:3002/guess/has-already-gussed/${gameId}/${user?.nickname}`).then(e => {
             console.log(e.data.response);
             setAlreadyGuessed(e.data.response);
         })
@@ -107,7 +107,7 @@ const ClipPage = () => {
 
         if(!user) {
             localStorage.setItem('guessedClipsValorant', `${localStorage.getItem('guessedClipsValorant')},${gameId}`);
-            axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
+            axios.post(`http://localhost:3002/guess/add`, {
                 clipId: parseInt(gameId),
                 user: 'guest',
                 rank: selectedRank.value,
@@ -120,7 +120,7 @@ const ClipPage = () => {
             return;
         }
 
-        axios.post(`https://guessthatrank.herokuapp.com/guess/add`, {
+        axios.post(`http://localhost:3002/guess/add`, {
             clipId: parseInt(gameId),
             rank: selectedRank.value,
             user: user?.nickname,

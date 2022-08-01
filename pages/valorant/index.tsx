@@ -30,7 +30,7 @@ const ValorantHome = () => {
         if(!user) {
 
             const guessedClips = localStorage.getItem('guessedClipsValorant');
-            axios.get('https://guessthatrank.herokuapp.com/clips/get-all/val').then(e => {
+            axios.get('http://localhost:3002/clips/get-all/val').then(e => {
                 setIncompleteClips(e.data.filter(clip => !guessedClips?.includes(clip.id)));
                 setCompletedClips(e.data.filter(clip => guessedClips?.includes(clip.id)));
             });
@@ -45,11 +45,11 @@ const ValorantHome = () => {
         console.log('ehllo');
 
         if(user) {
-            axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/val/${user.nickname}`).then(e => {
+            axios.get(`http://localhost:3002/guess/not-guessed-clips/val/${user.nickname}`).then(e => {
                 console.log(e.data);
                 setIncompleteClips(e.data);
             });
-            axios.get(`https://guessthatrank.herokuapp.com/guess/guessed-clips/val/${user.nickname}`).then(e => {
+            axios.get(`http://localhost:3002/guess/guessed-clips/val/${user.nickname}`).then(e => {
                 setCompletedClips(e.data);
             })
         }
