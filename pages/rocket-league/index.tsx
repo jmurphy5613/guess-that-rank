@@ -133,8 +133,8 @@ const ValorantHome = () => {
             </div>
 
             {/*This is where the clip grid will be*/}
-            {tabSelected == 'completed' && <ClipGrid clips={completedClips} />}
-            {tabSelected == 'incomplete' && <ClipGrid clips={incompleteClips} />}
+            {tabSelected == 'completed' && <ClipGrid game="rocket-league" clips={completedClips} />}
+            {tabSelected == 'incomplete' && <ClipGrid game="rocket-league" clips={incompleteClips} />}
 
         </div>
     )
