@@ -54,22 +54,6 @@ const Profile = () => {
             <img src={`https://gradient-avatar.glitch.me/${username}`} className={styles.icon} />
             <h1 className={styles.username}>{username}</h1>
 
-            <div className={styles["tabs"]}>
-                <div className={styles["tab-container"]}>
-                    <h2 className={styles.tab} onClick={() => {
-                        setTabSelected("History");
-                    }}>History ({allGuesses.length})</h2>
-                    {tabSelected === "History" && <div className={styles["tab-indicator"]}></div>}
-                </div>
-                <div className={styles["tab-container"]}>
-                    <h2 className={styles.tab} onClick={() => {
-                        setTabSelected("Clips")
-                    }}>Clips ({allClips.length})</h2>
-                    {tabSelected === "Clips" && <div className={styles["tab-indicator"]}></div>}
-                </div>
-            </div>
-            {tabSelected === "Clips" && <ClipGrid clips={allClips} /> }
-            {tabSelected === "History" && <HistoryGrid guesses={allGuesses} />}
         </div>
     )
 }
