@@ -9,6 +9,10 @@ import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 import { medalConvert } from '../utils/formatting';
 import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 import ReactGa from 'react-ga';
 
@@ -98,15 +102,31 @@ const CreateClip = () => {
 
 
     const uploadClip = () => {
+        if(videoURL === "" || clipTitle === "" ) {
+            toast.error('Please fill out all fields', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
         axios.post('http://localhost:3002/clips/add-clip', {
             videoSource: platformSelectedOption.value,
-            videoURL: `https://medal.tv/games/valorant/clip${medalConvert(videoURL)}`,
+            videoURL: medalConvert(videoURL),
             user: getUsername(),
             rank: rankOption.value,
             game: gameSelectedOption.value,
             videoName: clipTitle
         }).then(res => {
-            router.push(`/valorant/${res.data.id}`)
+            if(gameSelectedOption.value === 'val') {
+                router.push(`/valorant/${res.data.id}`)
+            } else if(gameSelectedOption.value === 'rl') {
+                router.push(`/rocket-league/${res.data.id}`)
+            }
         });
 
         //if there is a custom display name, register it
@@ -141,8 +161,8 @@ const CreateClip = () => {
                 className={styles.select}
                 options={gameOptions}
                 onChange={(e) => {
-                    setGameSelctionOption(e?.value)
-                    console.log(e.value)
+                    setGameSelctionOption(e)
+                    console.log(gameSelectedOption)
                     if(e?.value === "val") {
                         setRankOptions(valRankOptions);
                     } else if(e?.value === "rl") {
@@ -174,6 +194,21 @@ const CreateClip = () => {
             <button className={styles.submit} onClick={e => {
                 uploadClip();
             }}>Submit</button>
+
+
+
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme={'dark'}
+            />
         </div>
     )
 }
