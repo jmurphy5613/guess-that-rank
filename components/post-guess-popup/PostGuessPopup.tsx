@@ -1,6 +1,6 @@
 import styles from './PostGuessPopup.module.css';
 import { useRouter } from 'next/router';
-import { shortRankToLong } from '../../utils/convertions';
+import { shortRankToLongVal } from '../../utils/convertions';
 import { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
@@ -22,6 +22,21 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     const [numberIncorrect, setNumberIncorrect] = useState(0);
 
     useEffect(() => {
+
+        if(!user) {
+            setNumberCorrect(localStorage.getItem('correctValorantGuesses') ? parseInt(localStorage.getItem('correctValorantGuesses') as string) : 0);
+            setNumberIncorrect(localStorage.getItem('incorrectValorantGuesses') ? parseInt(localStorage.getItem('incorrectValorantGuesses') as string) : 0);
+
+            const guessedClips = localStorage.getItem('guessedClipsValorant');
+            axios.get('https://guessthatrank.herokuapp.com/clips/get-all/val').then(e => {
+                const unGuessedClips = e.data.filter((clip: any) => !guessedClips?.includes(clip.id));
+                setUnGuessedClips(unGuessedClips);
+                console.log(unGuessedClips)
+            });
+
+            return;
+        }
+
         axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
@@ -38,10 +53,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
         <div className={styles.root}>
             <div className={styles.popup}>
                 <h1 style={{ color: 'white' }}>{`Record: ${numberCorrect}-${numberIncorrect}`}</h1>
-                {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLong(rankGuessed)}</h2>}
+                {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLongVal(rankGuessed)}</h2>}
                 {!correct &&
                 <>
-                    <h2 className={styles["actual-rank"]}>Actual Rank: {shortRankToLong(correctRank)}</h2>
+                    <h2 className={styles["actual-rank"]}>Actual Rank: {shortRankToLongVal(correctRank)}</h2>
                 </>
                 }
                 {correct &&

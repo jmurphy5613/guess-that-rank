@@ -89,7 +89,7 @@ const ValorantHome = () => {
         <div className={styles.root}>
 
             <div className={styles["go-back"]} onClick={() => {
-                router.push('/')
+                router.push('/select')
             }}>
                 <AiOutlineLeft color="#C25Eff" />
                 <h3 className={styles["back-text"]}>Go Back</h3>
@@ -139,8 +139,8 @@ const ValorantHome = () => {
             </div>
 
             {/*This is where the clip grid will be*/}
-            {tabSelected == 'completed' && <ClipGrid clips={completedClips} />}
-            {tabSelected == 'incomplete' && <ClipGrid clips={incompleteClips} />}
+            {tabSelected == 'completed' && <ClipGrid game="valorant" clips={completedClips} />}
+            {tabSelected == 'incomplete' && <ClipGrid game="valorant" clips={incompleteClips} />}
 
         </div>
     )

@@ -10,9 +10,10 @@ import NavbarPopup from './NavbarPopup/NavbarPopup';
 type NavbarProps = {
     title: string,
     username: string,
+    game: string,
 }
 
-const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
+const Navbar:React.FC<NavbarProps> = ({ title, username, game }) => {
 
     const router = useRouter();
 
@@ -24,7 +25,7 @@ const Navbar:React.FC<NavbarProps> = ({ title, username }) => {
         <div className={styles.root}>
             <h1 className={styles.title}>
                 <AiOutlineLeft onClick={() => {
-                    window.location.href = "/valorant";
+                    window.location.href = `/${game}`;
                 }} className={styles.arrow} color="#C25Eff" />
                 &quot;{title}&quot; by&nbsp;
                 <span className={styles.pink}>{`@${username}`}</span>

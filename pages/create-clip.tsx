@@ -9,18 +9,23 @@ import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
 import { medalConvert } from '../utils/formatting';
 import ValorantNavbar from '../components/navbar/valorant/valorant-nav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 import ReactGa from 'react-ga';
 
 
 const gameOptions = [
     {value: 'val', label: 'Valorant'},
+    {value: 'rl', label: 'Rocket League'},
 ]
 const platformOptions = [
     {value: 'medal', label: 'Medal'},
 ]
 
-const rankOptions = [
+const valRankOptions = [
     {value: 'iron1', label: 'Iron 1'},
     {value: 'iron2', label: 'Iron 2'},
     {value: 'iron3', label: 'Iron 3'},
@@ -48,6 +53,31 @@ const rankOptions = [
     {value: 'radiant', label: 'Radiant'}
 ]
 
+const rlRankOptions = [
+    {value: 'bronze1', label: 'Bronze 1'},
+    {value: 'bronze2', label: 'Bronze 2'},
+    {value: 'bronze3', label: 'Bronze 3'},
+    {value: 'silver1', label: 'Silver 1'},
+    {value: 'silver2', label: 'Silver 2'},
+    {value: 'silver3', label: 'Silver 3'},
+    {value: 'gold1', label: 'Gold 1'},
+    {value: 'gold2', label: 'Gold 2'},
+    {value: 'gold3', label: 'Gold 3'},
+    {value: 'plat1', label: 'Platinum 1'},
+    {value: 'plat2', label: 'Platinum 2'},
+    {value: 'plat3', label: 'Platinum 3'},
+    {value: 'diamond1', label: 'Diamond 1'},
+    {value: 'diamond2', label: 'Diamond 2'},
+    {value: 'diamond3', label: 'Diamond 3'},
+    {value: 'champ1', label: 'Champion 1'},
+    {value: 'champ2', label: 'Champion 2'},
+    {value: 'champ3', label: 'Champion 3'},
+    {value: 'grandchamp1', label: 'Grand Champion 1'},
+    {value: 'grandchamp2', label: 'Grand Champion 2'},
+    {value: 'grandchamp3', label: 'Grand Champion 3'},
+    {value: 'supersoniclegend', label: 'Supersonic Legend'},
+]
+
 const CreateClip = () => {
 
     const [gameSelectedOption, setGameSelctionOption] = useState({value: 'val', label: 'Valorant'});
@@ -56,6 +86,7 @@ const CreateClip = () => {
     const [videoURL, setVideoURL] = useState("");
     const [clipTitle, setClipTitle] = useState("");
     const [customDisplayName, setCustomDisplayName] = useState("");
+    const [rankOptions, setRankOptions] = useState([]);
 
     const { user } = useUser();
     const router = useRouter();
@@ -71,15 +102,31 @@ const CreateClip = () => {
 
 
     const uploadClip = () => {
+        if(videoURL === "" || clipTitle === "" ) {
+            toast.error('Please fill out all fields', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
         axios.post('https://guessthatrank.herokuapp.com/clips/add-clip', {
             videoSource: platformSelectedOption.value,
-            videoURL: `https://medal.tv/games/valorant/clip${medalConvert(videoURL)}`,
+            videoURL: medalConvert(videoURL),
             user: getUsername(),
             rank: rankOption.value,
             game: gameSelectedOption.value,
             videoName: clipTitle
         }).then(res => {
-            router.push(`/valorant/${res.data.id}`)
+            if(gameSelectedOption.value === 'val') {
+                router.push(`/valorant/${res.data.id}`)
+            } else if(gameSelectedOption.value === 'rl') {
+                router.push(`/rocket-league/${res.data.id}`)
+            }
         });
 
         //if there is a custom display name, register it
@@ -113,7 +160,15 @@ const CreateClip = () => {
                 placeholder="Select the game"
                 className={styles.select}
                 options={gameOptions}
-                onChange={setGameSelctionOption}
+                onChange={(e) => {
+                    setGameSelctionOption(e)
+                    console.log(gameSelectedOption)
+                    if(e?.value === "val") {
+                        setRankOptions(valRankOptions);
+                    } else if(e?.value === "rl") {
+                        setRankOptions(rlRankOptions);
+                    }
+                }}
             />
             <Select
                 placeholder="Select a platform"
@@ -139,6 +194,21 @@ const CreateClip = () => {
             <button className={styles.submit} onClick={e => {
                 uploadClip();
             }}>Submit</button>
+
+
+
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme={'dark'}
+            />
         </div>
     )
 }
