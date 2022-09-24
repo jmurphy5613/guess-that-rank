@@ -1,6 +1,6 @@
 import styles from './PostGuessPopup.module.css';
 import { useRouter } from 'next/router';
-import { shortRankToLong } from '../../utils/convertions';
+import { shortRankToLongVal } from '../../utils/convertions';
 import { useEffect, useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import axios from 'axios';
@@ -53,10 +53,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
         <div className={styles.root}>
             <div className={styles.popup}>
                 <h1 style={{ color: 'white' }}>{`Record: ${numberCorrect}-${numberIncorrect}`}</h1>
-                {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLong(rankGuessed)}</h2>}
+                {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLongVal(rankGuessed)}</h2>}
                 {!correct &&
                 <>
-                    <h2 className={styles["actual-rank"]}>Actual Rank: {shortRankToLong(correctRank)}</h2>
+                    <h2 className={styles["actual-rank"]}>Actual Rank: {shortRankToLongVal(correctRank)}</h2>
                 </>
                 }
                 {correct &&
