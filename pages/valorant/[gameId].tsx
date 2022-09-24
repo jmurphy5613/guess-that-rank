@@ -70,6 +70,9 @@ const ClipPage = () => {
 
         if(!user) {
             const guessedClips = localStorage.getItem('guessedClipsValorant');
+            if(!guessedClips) {
+                localStorage.setItem('guessedClipsValorant', [])
+            }
             if(guessedClips?.indexOf(gameId) == -1) {
                 setAlreadyGuessed("false");
             }
@@ -106,7 +109,8 @@ const ClipPage = () => {
     const handleGuess = () => {
 
         if(!user) {
-            localStorage.setItem('guessedClipsValorant', `${localStorage.getItem('guessedClipsValorant')},${gameId}`);
+            localStorage.setItem('guessedClipsValorant', [...localStorage.getItem('guessedClipsValorant') , gameId]);
+            console.log(localStorage.getItem('guessedClipsValorant'))
             axios.post(`http://localhost:3002/guess/add`, {
                 clipId: parseInt(gameId),
                 user: 'guest',

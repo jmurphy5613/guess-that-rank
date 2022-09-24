@@ -83,7 +83,7 @@ const ValorantHome = () => {
         <div className={styles.root}>
 
             <div className={styles["go-back"]} onClick={() => {
-                router.push('/')
+                router.push('/select')
             }}>
                 <AiOutlineLeft color="#C25Eff" />
                 <h3 className={styles["back-text"]}>Go Back</h3>
