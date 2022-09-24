@@ -24,7 +24,17 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     useEffect(() => {
 
         if(!user) {
-            
+            setNumberCorrect(localStorage.getItem('correctValorantGuesses') ? parseInt(localStorage.getItem('correctValorantGuesses') as string) : 0);
+            setNumberIncorrect(localStorage.getItem('incorrectValorantGuesses') ? parseInt(localStorage.getItem('incorrectValorantGuesses') as string) : 0);
+
+            const guessedClips = localStorage.getItem('guessedClipsValorant');
+            axios.get('http://localhost:3002/clips/get-all/val').then(e => {
+                const unGuessedClips = e.data.filter((clip: any) => !guessedClips?.includes(clip.id));
+                setUnGuessedClips(unGuessedClips);
+                console.log(unGuessedClips)
+            });
+
+            return;
         }
 
         axios.get(`http://localhost:3002/guess/not-guessed-clips/${user?.nickname}`).then(e => {
