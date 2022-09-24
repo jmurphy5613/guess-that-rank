@@ -114,7 +114,7 @@ const CreateClip = () => {
             });
             return;
         }
-        axios.post('http://localhost:3002/clips/add-clip', {
+        axios.post('https://guessthatrank.herokuapp.com/clips/add-clip', {
             videoSource: platformSelectedOption.value,
             videoURL: medalConvert(videoURL),
             user: getUsername(),
@@ -131,7 +131,7 @@ const CreateClip = () => {
 
         //if there is a custom display name, register it
         if(customDisplayName !== "" && user?.nickname !== "jmurphy5613") {
-            axios.post('http://localhost:3002/users/add-display-name', {
+            axios.post('https://guessthatrank.herokuapp.com/users/add-display-name', {
                 username: user?.nickname,
                 nickname: customDisplayName
             }).then(res => {

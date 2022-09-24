@@ -28,7 +28,7 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
             setNumberIncorrect(localStorage.getItem('incorrectValorantGuesses') ? parseInt(localStorage.getItem('incorrectValorantGuesses') as string) : 0);
 
             const guessedClips = localStorage.getItem('guessedClipsValorant');
-            axios.get('http://localhost:3002/clips/get-all/val').then(e => {
+            axios.get('https://guessthatrank.herokuapp.com/clips/get-all/val').then(e => {
                 const unGuessedClips = e.data.filter((clip: any) => !guessedClips?.includes(clip.id));
                 setUnGuessedClips(unGuessedClips);
                 console.log(unGuessedClips)
@@ -37,10 +37,10 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
             return;
         }
 
-        axios.get(`http://localhost:3002/guess/not-guessed-clips/${user?.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });
-        axios.get(`http://localhost:3002/guess/record/${user?.nickname}`).then(e => {
+        axios.get(`https://guessthatrank.herokuapp.com/guess/record/${user?.nickname}`).then(e => {
             setNumberCorrect(e.data.correct);
             setNumberIncorrect(e.data.total - e.data.correct);
             console.log(e.data.total);
