@@ -22,6 +22,11 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     const [numberIncorrect, setNumberIncorrect] = useState(0);
 
     useEffect(() => {
+
+        if(!user) {
+            
+        }
+
         axios.get(`http://localhost:3002/guess/not-guessed-clips/${user?.nickname}`).then(e => {
             setUnGuessedClips(e.data);
         });

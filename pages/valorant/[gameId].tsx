@@ -63,16 +63,24 @@ const ClipPage = () => {
 
     const [alreadyGuessed, setAlreadyGuessed] = useState("");
 
+    const [loggedInUser, setLoggedInUser] = useState(true)
+
     useEffect(() => {
         //fetch data here
         if(!router.isReady) return;
         const { gameId } = router.query;
 
         if(!user) {
+            setLoggedInUser(false)
+
             const guessedClips = localStorage.getItem('guessedClipsValorant');
-            if(!guessedClips) {
+            //check if they have guessed before
+            if(!guessedClips || guessedClips === '') {
                 localStorage.setItem('guessedClipsValorant', [])
+                localStorage.setItem('correctValorantGuesses', 0)
+                localStorage.setItem('incorrectValorantGuesses', 0)
             }
+            //check if they have already guessed the current gameId
             if(guessedClips?.indexOf(gameId) == -1) {
                 setAlreadyGuessed("false");
             }
@@ -109,8 +117,19 @@ const ClipPage = () => {
     const handleGuess = () => {
 
         if(!user) {
-            localStorage.setItem('guessedClipsValorant', [...localStorage.getItem('guessedClipsValorant') , gameId]);
+            //update guessed list
+            const currentList = localStorage.getItem('guessedClipsValorant')
+            localStorage.setItem('guessedClipsValorant', `${currentList},${gameId}`);
             console.log(localStorage.getItem('guessedClipsValorant'))
+
+            //update record in localstorage
+            if(isCorrect()) {
+                localStorage.setItem('correctValorantGuesses', JSON.parse(localStorage.getItem('correctValorantGuesses'))+1)
+            } else {
+                localStorage.setItem('incorrectValorantGuesses', JSON.parse(localStorage.getItem('incorrectValorantGuesses'))+1)
+            }
+            console.log(localStorage.getItem('incorrectValorantGuesses'), localStorage.getItem('incorrectValorantGuesses'))
+
             axios.post(`http://localhost:3002/guess/add`, {
                 clipId: parseInt(gameId),
                 user: 'guest',
@@ -157,7 +176,7 @@ const ClipPage = () => {
             </div>}
             <iframe className={styles.video} width="65%" height="70%" src={`${currentClip.videoURL}`} frameBorder="0" allow="autoplay" allowFullScreen></iframe>
 
-            {guessed && <PostGuessPopup correct={isCorrect()} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
+            {guessed && <PostGuessPopup isLoggedIn={loggedInUser} correct={isCorrect()} rankGuessed={selectedRank.value} correctRank={correctRank} clipId={gameId} />}
 
         </div>
     )
