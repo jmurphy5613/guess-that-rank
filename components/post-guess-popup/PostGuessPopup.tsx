@@ -52,7 +52,7 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
     return (
         <div className={styles.root}>
             <div className={styles.popup}>
-                <h1 style={{ color: 'white' }}>{`Record: ${numberCorrect}-${numberIncorrect}`}</h1>
+                {/* <h1 style={{ color: 'white' }}>{`Record: ${numberCorrect}-${numberIncorrect}`}</h1>
                 {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLongVal(rankGuessed)}</h2>}
                 {!correct &&
                 <>
@@ -67,7 +67,35 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                     else {
                         router.push(`/valorant/gameId=${unGuessedClips[0].id}`, `/valorant/${unGuessedClips[0].id}`);
                     }
-                }}>Go Next</button>
+                }}>Go Next</button> */}
+                <div className={styles["total-points"]}>
+                    <h1 className={styles.total}>5</h1>
+                    <h3 className={styles.label}>points</h3>
+                </div>
+                <div className={styles["point-contributions"]}>
+                    <div className={styles["point-contribution"]}>
+                        <h2 className={styles["contribution-points"]}>1</h2>
+                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                    </div>
+                    <h3 className={styles.plus}>+</h3>
+                    <div className={styles["point-contribution"]}>
+                        <h2 className={styles["contribution-points"]}>1</h2>
+                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                    </div>
+                    <h3 className={styles.plus}>+</h3>
+                    <div className={styles["point-contribution"]}>
+                        <h2 className={styles["contribution-points"]}>1</h2>
+                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                    </div>
+                    <h3 className={styles.plus}>+</h3>
+                    <div className={styles["point-contribution"]}>
+                        <h2 className={styles["contribution-points"]}>1</h2>
+                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                    </div>
+                </div>
+                <div className={styles.leave}>
+
+                </div>
             </div>
         </div>
     )

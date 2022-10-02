@@ -10,8 +10,8 @@
 }
 
 .popup {
-    height: 50vh;
-    width: 25vw;
+    height: 55vh;
+    width: 50vw;
     background-color: rgb(18, 19, 30);
     border-radius: 1rem;
     display: flex;
@@ -78,4 +78,54 @@
     .guess {
         font-size: 1.2rem;
     }
+}
+
+
+
+/* Updated css for new result screeen */
+
+
+.total-points {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.total {
+    margin: 0;
+    color: #C25Eff;
+}
+
+.label {
+    font-family: "Inter";
+    font-weight: 200;
+    color: white;
+    margin: 0;
+}
+
+.point-contributions {
+    height: 50%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contribution-points {
+    font-family: "Inter";
+    font-weight: 200;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.contribution-label {
+    font-family: "Inter";
+    font-weight: 400;
+    color: #4B4B4B;
+    margin: 0;
+    text-align: center;
 }

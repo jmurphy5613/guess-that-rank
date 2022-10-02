@@ -55,7 +55,7 @@ const ClipPage = () => {
         value: ''
     });
 
-    const [guessed, setGuessed] = useState(false);
+    const [guessed, setGuessed] = useState(true);
     const [correct, setCorrect] = useState(false);
     const [correctRank, setCorrectRank] = useState("");
 
