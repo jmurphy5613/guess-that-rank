@@ -10,7 +10,7 @@
 }
 
 .popup {
-    height: 55vh;
+    height: 50vh;
     width: 50vw;
     background-color: rgb(18, 19, 30);
     border-radius: 1rem;
@@ -28,11 +28,9 @@
 .actual-rank {
     font-family: "Inter";
     font-weight: 400;
-    color: #C25Eff;
-}
-
-.rank {
-    height: 125px;
+    color: #b6b6b6;
+    font-size: 1rem;
+    width: 30%;
 }
 
 .go-next {
@@ -45,7 +43,6 @@
     font-weight: 700;
     border-radius: 10px;
     transition: 0.5s;
-    margin-top: 2rem;
     /* position: absolute;
     bottom: calc(25vh + 2rem); */
 }
@@ -56,9 +53,11 @@
 }
 
 .guess {
-    color: white;
+    color: #b6b6b6;
     font-family: "Inter";
-    font-weight: 700;
+    font-weight: 400;
+    font-size: 1rem;
+    width: 30%;
 }
 
 .stats {
@@ -97,6 +96,7 @@
 .total {
     margin: 0;
     color: #C25Eff;
+    text-align: center;
 }
 
 .label {
@@ -107,11 +107,15 @@
 }
 
 .point-contributions {
-    height: 50%;
+    height: 35%;
     width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.point-contribution {
+    width: 30%;
 }
 
 .contribution-points {
@@ -128,4 +132,30 @@
     color: #4B4B4B;
     margin: 0;
     text-align: center;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.plus {
+    font-family: "Inter";
+    font-weight: 200;
+    color: rgb(175, 175, 175);
+    margin: 0;
+    text-align: center;
+}
+
+.current {
+    height: 30%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leave {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

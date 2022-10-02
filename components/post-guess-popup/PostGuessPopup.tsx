@@ -70,31 +70,40 @@ const PostGuessPopup:React.FC<PostGuessPopupProps> = ({ correct, rankGuessed, co
                 }}>Go Next</button> */}
                 <div className={styles["total-points"]}>
                     <h1 className={styles.total}>5</h1>
-                    <h3 className={styles.label}>points</h3>
+                    {/* <h3 className={styles.label}>points</h3> */}
                 </div>
                 <div className={styles["point-contributions"]}>
                     <div className={styles["point-contribution"]}>
                         <h2 className={styles["contribution-points"]}>1</h2>
-                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                        <h3 className={styles["contribution-label"]}>correct rank (3pts)</h3>
                     </div>
                     <h3 className={styles.plus}>+</h3>
                     <div className={styles["point-contribution"]}>
                         <h2 className={styles["contribution-points"]}>1</h2>
-                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                        <h3 className={styles["contribution-label"]}>correct rankset (1pt)</h3>
                     </div>
                     <h3 className={styles.plus}>+</h3>
                     <div className={styles["point-contribution"]}>
                         <h2 className={styles["contribution-points"]}>1</h2>
-                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
-                    </div>
-                    <h3 className={styles.plus}>+</h3>
-                    <div className={styles["point-contribution"]}>
-                        <h2 className={styles["contribution-points"]}>1</h2>
-                        <h3 className={styles["contribution-label"]}>correct rankset</h3>
+                        <h3 className={styles["contribution-label"]}>correct radiant (2pts)</h3>
                     </div>
                 </div>
-                <div className={styles.leave}>
-
+                <div className={styles.current}>
+                    {!correct && <h2 className={styles.guess}>You guessed: {shortRankToLongVal(rankGuessed)}</h2>}
+                                        <button className={styles["go-next"]} onClick={e => {
+                        if(unGuessedClips.length  == 0) router.push('/valorant');
+                        else {
+                            router.push(`/valorant/gameId=${unGuessedClips[0].id}`, `/valorant/${unGuessedClips[0].id}`);
+                        }
+                    }}>Go Next</button>
+                    {!correct &&
+                    <>
+                        <h2 className={styles["actual-rank"]}>Actual Rank: {shortRankToLongVal(correctRank)}</h2>
+                    </>
+                    }
+                    {correct &&
+                        <h2 className={styles["actual-rank"]}>Correct!</h2>
+                    }
                 </div>
             </div>
         </div>
