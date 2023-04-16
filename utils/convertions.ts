@@ -1,4 +1,4 @@
-export const shortRankToLongVal = (shortRank) => {
+export const shortRankToLongVal = (shortRank: string) => {
     switch (shortRank) {
         case 'iron1':
             return 'Iron 1';
@@ -54,7 +54,7 @@ export const shortRankToLongVal = (shortRank) => {
     return 'Unknown';
 }
 
-export const shortRankToLongRl = (shortRank) => {
+export const shortRankToLongRl = (shortRank: string) => {
     switch (shortRank) {
         case 'bronze1':
             return 'Bronze 1';
