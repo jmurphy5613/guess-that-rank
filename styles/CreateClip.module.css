@@ -36,10 +36,6 @@
     margin: 1rem;
 }
 
-.url-input {
-
-}
-
 .go-back {
     position: absolute;
     top: 0;
@@ -68,7 +64,7 @@
     padding-left: 1rem;
     border: none;
     margin: 1rem;
-    font-weight: 700;
+    font-weight: 300;
 }
 .url-input:focus {
     outline: none;
@@ -76,5 +72,22 @@
 .url-input::-webkit-input-placeholder {
     color: rgb(143, 142, 142);
     font-family: 'Inter';
-    font-weight: 700;
+    font-weight: 300;
+}
+
+.link-helper {
+    color: rgb(69, 109, 242);
+    font-family: "Inter";
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    width: 20%;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.link-helper:hover {
+    text-decoration: underline;
+    color: rgb(41, 80, 208);
 }
