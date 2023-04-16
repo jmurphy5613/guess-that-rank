@@ -6,10 +6,12 @@ import styles from "../../styles/Profile.module.css";
 import axios from "axios";
 import ClipGrid from "../../components/valorant/clip-grid/ClipGrid";
 import HistoryGrid from "../../components/history-grid/HistoryGrid";
+import { useUser } from '@auth0/nextjs-auth0';
 
 const Profile = () => {
   const router = useRouter();
   const { username } = router.query;
+  const { user } = useUser();
 
   const [dataFetched, setDataFetched] = useState(false);
 
@@ -59,7 +61,7 @@ const Profile = () => {
       </div>
 
       <img
-        src={`https://gradient-avatar.glitch.me/${username}`}
+        src={`${user?.picture}`}
         className={styles.icon}
       />
       <h1 className={styles.username}>{username}</h1>

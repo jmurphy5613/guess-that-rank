@@ -17,11 +17,10 @@ const Login = () => {
 
     const guestRegistration = async () => {
         const guestId = localStorage.getItem('guestId');
-        if (guestId) {
-            router.push('/select');
-        } else {
-            const guest = await createGuestUser();
+        if (!guestId) {
+            await createGuestUser();
         }
+        router.push('/select')
     }
 
     return (

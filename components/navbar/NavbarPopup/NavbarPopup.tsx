@@ -8,9 +8,11 @@ const NavbarPopup = () => {
     const { user } = useUser();
     const router = useRouter();
 
+    console.log(user.picture);
+
     return (
         <div className={styles.root}>
-            <Popup arrow={false} closeOnDocumentClick trigger={ <img src={`https://gradient-avatar.glitch.me/${user?.nickname}`} alt="" className={styles.icon} /> }>
+            <Popup arrow={false} closeOnDocumentClick trigger={ <img src={`${user.picture}`} alt="" className={styles.icon} /> }>
                 <div className={styles["popup-container"]}>
                     <button className={styles.button} onClick={() => {
                         router.push('/profiles/' + user?.nickname);
